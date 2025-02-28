@@ -21,7 +21,7 @@ function Products({ data }) {
                         <span>Adorn Yourself in Elegance</span>
                         <span>with Exquisite Jewelry</span>
                     </div>
-                    <div className='product-slider w-full h-auto flex my-5 overflow-x-scroll gap-6 px-8 pb-10 xl:gap-3 xl:px-2 xl:overflow-hidden'>
+                    <div className='product-slider w-full h-auto flex my-5 overflow-x-scroll gap-6 px-8 ml-4 pb-10 xl:gap-3 xl:px-2 xl:overflow-hidden'>
                         {
                             products.length > 0
                                 ? products.map((product, index) => (
@@ -29,9 +29,9 @@ function Products({ data }) {
                                         <div className='w-full h-52 overflow-hidden rounded-2xl'>
                                             <img src={selectedImages[product._id] || product?.Image} alt="image" className='w-full h-full bg-gray-300 object-cover group-hover:scale-110 duration-500 ease-in-out' />
                                         </div>
-                                        <div className='w-full h-auto flex justify-between mt-2 items-center px-2'>
-                                            <span className='font-marcellus'>{product.name}</span>
-                                            <GoHeart size={20} className='text-[#B3B3B3]' />
+                                        <div className='w-full h-auto flex mt-2 px-2'>
+                                            <span className='font-marcellus w-[85%] h-[75px]'>{product.name}</span>
+                                            <GoHeart size={20} className='text-[#B3B3B3]'/>
                                         </div>
                                         <span className='text-[#5A5A5A] font-bellota px-2 text-xs'>{product.category}</span>
                                         <div className='w-full h-auto flex justify-between mt-4 items-center px-2'>
@@ -79,8 +79,8 @@ function Products({ data }) {
                     </div>
                 </div>
                 <div className='w-full h-[90vh] flex items-center justify-center relative md:my-5 xl:w-[40vw] xl:items-end xl:h-auto xl:my-0'>
-                    <img src={Necklace} alt="necklace" className='w-[80%] h-[80%] rounded-[100px] sm:w-[50%] md:h-full md:w-[50%] lg:w-[40%] xl:w-[60%] xl:h-[90%] object-cover' />
-                    <NavLink state={{ product: floatingProducts?.[0] }} to={`/single-product/${floatingProducts[0]?._id}`} className='absolute flex p-1 bg-white rounded-lg bottom-32 right-5 shadow-md sm:right-36 md:right-48 lg:right-60 xl:right-10'>
+                    <img src={Necklace} alt="necklace" className='w-[80%] h-[60%] rounded-[100px] sm:w-[50%] md:h-full md:w-[50%] lg:w-[40%] xl:w-[60%] xl:h-[80%] object-cover' />
+                    <NavLink state={{ product: floatingProducts?.[0] }} to={`/single-product/${floatingProducts[0]?._id}`} className='absolute flex p-1 bg-white rounded-lg bottom-24 right-5 shadow-md sm:right-36 md:right-48 lg:right-60 xl:right-6'>
                         <img src={floatingProducts[0]?.Image} alt="image" className='w-16 h-16 bg-gray-200 rounded-lg md:h-20 md:w-20 xl:w-16 xl:h-16' />
                         <div className='w-auto h-auto flex flex-col px-4 justify-between pb-2:'>
                             <div className='w-full h-auto flex flex-col'>
@@ -91,7 +91,7 @@ function Products({ data }) {
                         </div>
                     </NavLink>
                 </div>
-                <NavLink state={{ product: floatingProducts?.[1] }} to={`/single-product/${floatingProducts[1]?._id}`} className='hidden xl:absolute xl:flex xl:p-1 xl:bg-white xl:rounded-lg xl:top-36 xl:shadow-md xl:right-[360px] '>
+                <NavLink state={{ product: floatingProducts?.[1] }} to={`/single-product/${floatingProducts[1]?._id}`} className='hidden xl:absolute xl:flex xl:p-1 xl:bg-white xl:rounded-lg xl:top-40 xl:shadow-md xl:right-[270px] '>
                     <img src={floatingProducts[1]?.Image} alt="image" className='w-16 h-16 bg-gray-200 rounded-lg md:h-20 md:w-20 xl:w-16 xl:h-16' />
                     <div className='w-auto h-auto flex flex-col px-4 justify-between pb-2:'>
                         <div className='w-full h-auto flex flex-col'>

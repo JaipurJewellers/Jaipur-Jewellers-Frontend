@@ -18,7 +18,7 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
         height: "",
         depth: "",
         weight: "",
-        details: [{}],
+        details: [{ details: "" }],
         image1Color: "",
         image2Color: "",
         image3Color: "",
@@ -51,23 +51,43 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
         setFormData({ ...formData, quantityPrices: updatedQuantityPrices });
     };
 
+    // const handleDetailsChange = (index, value) => {
+    //     const updatedDetails = [...formData.details];
+    //     updatedDetails[index] = value;
+    //     setFormData({ ...formData, details: updatedDetails });
+    // };
     const handleDetailsChange = (index, value) => {
-        const updatedDetails = [...formData.details];
-        updatedDetails[index] = value;
-        setFormData({ ...formData, details: updatedDetails });
+        const newDetails = [...formData.details];
+        newDetails[index] = { details: value }; // ✅ Ensure each entry is an object
+        setFormData({ ...formData, details: newDetails });
     };
+    
+    
+    
 
+    // const handleAddDetail = () => {
+    //     setFormData({
+    //         ...formData,
+    //         details: [...formData.details, ""],
+    //     });
+    // };
     const handleAddDetail = () => {
         setFormData({
             ...formData,
-            details: [...formData.details, ""],
+            details: [...formData.details, { details: "" }], // ✅ Add a new object with an empty string
         });
     };
+    
 
+    // const handleRemoveDetail = (index) => {
+    //     const updatedDetails = formData.details.filter((_, i) => i !== index);
+    //     setFormData({ ...formData, details: updatedDetails });
+    // };
     const handleRemoveDetail = (index) => {
-        const updatedDetails = formData.details.filter((_, i) => i !== index);
-        setFormData({ ...formData, details: updatedDetails });
+        const newDetails = formData.details.filter((_, i) => i !== index);
+        setFormData({ ...formData, details: newDetails });
     };
+    
 
     const handleExtraImageChange = (index, file) => {
         const updatedImages = [...extraImages];
@@ -85,7 +105,7 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
         data.append("category", formData.category);
         data.append("countInStock", formData.countInStock);
         data.append("quantityPrices", JSON.stringify(formData.quantityPrices));
-        data.append("details", JSON.stringify(formData.details));
+        // data.append("details", JSON.stringify(formData.details));
         data.append("model", formData.model);
         data.append("width", formData.width);
         data.append("height", formData.height);
@@ -94,6 +114,9 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
         data.append("image1Color", formData.image1Color);
         data.append("image2Color", formData.image2Color);
         data.append("image3Color", formData.image3Color);
+        formData.details.forEach((detail, index) => {
+            data.append(`details : `, detail); // Send each detail separately
+        });
 
         if (mainImage) data.append("Image", mainImage);
         extraImages.forEach((image, index) => {
@@ -133,20 +156,20 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
         if (product) {
             setFormData({
                 name: product.name,
-                product_id: product.product_id,
-                desc: product.desc,
-                category: product.category,
+                product_id: product.product_id ,
+                desc: product.desc !="undefined" ? product.desc : "",
+                category: product.category !="undefined" ? product.category : "",
                 countInStock: product.countInStock,
                 quantityPrices: product.quantityPrices?.length > 0 ? product.quantityPrices : [{ quantity: "", price: 0 }],
                 details: Array.isArray(product.details) && product.details.length > 0 ? product.details : [""],
-                model: product.model,
-                width: product.width,
-                height: product.height,
-                depth: product.depth,
-                weight: product.weight,
-                image1Color: product.Image1?.color,
-                image2Color: product.Image2?.color,
-                image3Color: product.Image3?.color,
+                model: product.model !="undefined" ? product.model : "",
+                width: product.width !="undefined" ? product.width : "",
+                height: product.height !="undefined" ? product.height : "",
+                depth: product.depth !="undefined" ? product.depth : "",
+                weight: product.weight !="undefined" ? product.weight : "",
+                image1Color: product.Image1?.color  ? product.Image1?.color : "",
+                image2Color: product.Image2?.color  ? product.Image2?.color : "",
+                image3Color: product.Image3?.color  ? product.Image3?.color : "",
             });
         }
     }, [product]);
@@ -353,7 +376,7 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
                             <div key={index} className="flex items-center mb-2 space-x-2">
                                 <input
                                     type="text"
-                                    value={detail}
+                                    value={detail?.details}
                                     placeholder={`Detail ${index + 1}`}
                                     onChange={(e) => handleDetailsChange(index, e.target.value)}
                                     className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"

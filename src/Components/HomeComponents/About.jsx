@@ -12,10 +12,10 @@ function About() {
     const [hoverNo, setHoverNo] = useState(null);
     
     const products = [
-        { image:Pedant, name: "Pendant" },
-        { image: Perls, name: "EarRing" },
-        { image: Bracelet, name: "Bracelet" },
-        { image: NeckLes, name: "Diamond" },
+        { image:Pedant, name: "Pendant" ,description:""},
+        { image: Perls, name: "EarRing" , description:""},
+        { image: Bracelet, name: "Bracelet", description:"" },
+        { image: NeckLes, name: "Diamond", description:"" },
     ];
     
     return (
@@ -48,8 +48,11 @@ function About() {
                                 alt={product.name} 
                                 className={`w-full h-[70vh] lg:h-[90vh] object-cover rounded-xl transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-50'}`}
                             />
-                            <div className={`absolute bottom-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-0'}`}> 
-                                {product.name} 
+                            <div className={`absolute rounded-xl bottom-0 left-0 w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-0'}`}> 
+                                <div className='absolute bottom-20'>
+                                <div className='text-2xl font-bold text-center'>{product.name}</div> 
+                                <div className='text-center'>{product.description}</div> 
+                                </div>
                             </div>
                         </div>
                     </NavLink>

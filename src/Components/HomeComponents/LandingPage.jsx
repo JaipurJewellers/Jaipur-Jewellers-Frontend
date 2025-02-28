@@ -47,7 +47,7 @@ function LandingPage() {
 
     const carousal = [
         { id: 1, src: Main, alt: "Picture 1", title: 'Bracelets Collection', content: 'Wrap Your Wrist in Elegance', otherContent: 'Handcrafted Bracelets That Tell a Story',Category1:R1,Category2: R2,Category3: R3 },
-        { id: 2, src: Pedant, alt: "Picture 2", title: 'Rings Collection', content: 'A Circle of Timeless Beauty', otherContent: 'Rings That Symbolize Love, Power & Tradition.',Category1: P1,Category2: P2,Category3: P3},
+        { id: 2, src: Pedant, alt: "Picture 2", title: 'Pendant Collection', content: 'A Circle of Timeless Beauty', otherContent: 'Rings That Symbolize Love, Power & Tradition.',Category1: P1,Category2: P2,Category3: P3},
         { id: 3, src: Earring, alt: "Picture 3", title: 'Earrings (Studs) Collection', content: 'Small in Size, Grand in Elegance', otherContent: 'Jaipur’s Finest Stud Earrings for Every Occasion.',Category1: ER1,Category2: ER2,Category3: ER3 },
         { id: 4, src: Bracelet, alt: "Picture 4", title: 'Pendants Collection', content: 'Wear Your Story Close to Your Heart', otherContent: 'Discover Handcrafted Pendants That Speak to You.',Category1: B1,Category2: B2,Category3: B3 }
     ];
@@ -126,12 +126,12 @@ function LandingPage() {
             </div>
             <div className='w-full h-10 bg-[#1A3A37] py-1.5 text-white font-marcellus flex items-center lg:h-12'>
                 <Marquee direction='left' speed={70} className=''>
-                    <img src={Shine} alt="shine" className='w-10' />
-                    <span className='mx-6'>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
-                    <img src={Shine} alt="shine" className='w-10' />
-                    <span className='mx-6'>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
-                    <img src={Shine} alt="shine" className='w-10' />
-                    <span className='mx-6'>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
+                    <img src={Shine} alt="shine" className='w-10 mx-6' />
+                    <span className='mx-6 text-2xl'>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
+                    <img src={Shine} alt="shine" className='w-10 mx-6' />
+                    <span className='mx-6 text-2xl'>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
+                    <img src={Shine} alt="shine" className='w-10 mx-6' />
+                    <span className='mx-6 text-2xl '>Exclusive Discounts on Jaipur’s Finest Jewellery ! Celebrate the Festivities with Extra Sparkle !</span>
                     {/* <img src={Shine} alt="shine" className='w-10' />
                     <span className='mx-6'>Upto 30% Off On First Purchase</span>
                     <img src={Shine} alt="shine" className='w-10' />

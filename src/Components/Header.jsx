@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { FaBarsStaggered } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { PiStorefrontLight } from "react-icons/pi";
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 import { useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
@@ -20,6 +20,7 @@ import logo from '../assets/logo2.png'
 
 
 function Header({ color }) {
+    const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState('')
     const { isAuthenticated, logout } = useContext(AuthContext)
     const [sideBar, setSideBar] = useState(false)
@@ -91,8 +92,8 @@ function Header({ color }) {
     return (
         <>
             <header className='w-full h-24 items-center flex justify-between p-4 relative z-50' style={{ backgroundColor: color }}>
-                <div className=' w-[100px] h-[80px] mt-6 font-marcellus'>
-                    <img src={logo} alt="" className='w-full h-full object-cover' />
+                <div className=' w-[100px] h-[80px] mt-6 font-marcellus cursor-pointer'>
+                    <img src={logo} alt="" onClick={()=>navigate('/')} className='w-full h-full object-cover' />
 
                 </div>
                 <div className='hidden lg:flex lg:font-marcellus lg:gap-10 lg:ml-20 xl:60 xl:gap-16 2xl:gap-20'>

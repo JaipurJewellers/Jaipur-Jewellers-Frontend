@@ -106,7 +106,7 @@ function MyCart() {
                                 </div>
                                 <div className='w-full h-auto flex flex-col gap-3 mt-3'>
                                     <span onClick={handleCheckoutClick} className='w-full h-auto flex justify-center items-center bg-[#1A3A37] text-[#FAFAFA] rounded-md py-2 cursor-pointer'>Checkout</span>
-                                    <span className='w-full h-auto flex justify-center items-center text-[#1A3A37] py-2 cursor-pointer'>Continue Shopping</span>
+                                    <span onClick={()=>navigate('/shop')} className='w-full h-auto flex justify-center items-center text-[#1A3A37] py-2 cursor-pointer'>Continue Shopping</span>
                                 </div>
                             </div>
                         </div>

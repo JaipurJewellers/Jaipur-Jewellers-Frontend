@@ -14,8 +14,8 @@ function Collections({ data }) {
     return (
         <div id='collections' className='bg-[#1A3A37] w-full h-auto flex flex-col justify-center items-center py-10 xl:py-20 gap-10'>
             <div className='flex flex-col justify-center items-center font-marcellus text-white gap-3'>
-                <span className='tracking-[7px] text-xs sm:text-sm md:text-base text-white'>Glamorous Life</span>
-                <span className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl'>Our new Collections</span>
+                <span className='tracking-[7px] text-xs sm:text-sm md:text-base text-white'>GLAMOROUS LIFE</span>
+                <span className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl'>Our New Collections</span>
             </div>
             <div className='product-slider w-full h-auto overflow-x-scroll px-10 flex gap-6 m-10 md:h-[300px] xl:h-[400px]'>
                 {
@@ -25,8 +25,8 @@ function Collections({ data }) {
                                 <div className='w-full h-60 xl:max-h-[470px]'>
                                     <img src={selectedImages[product._id] || product?.Image} alt="image" className='w-full h-full object-cover bg-gray-900 rounded-3xl ' />
                                 </div>
-                                <div className='w-full h-auto flex justify-between mt-2 items-center px-2 xl:text-2xl'>
-                                    <span className='font-marcellus text-[#090909]'>{product.name}</span>
+                                <div className='w-full h-auto flex justify-between mt-2 px-2 xl:text-2xl'>
+                                    <span className='font-marcellus text-[#090909] w-[90%]'>{product.name}</span>
                                     <GoHeart size={20} className='text-[#B3B3B3] xl:size-6' />
                                 </div>
                                 <span className='text-[#5A5A5A] text-xs px-2 xl:text-base'>{product.category}</span>

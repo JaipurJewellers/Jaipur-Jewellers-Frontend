@@ -22,8 +22,8 @@ function Collections({ data }) {
                     products.length > 0
                         ? products.map((product, index) => (
                             <NavLink state={{ product }} to={`/single-product/${product._id}`} key={index} onMouseEnter={() => setHoverNo(index)} onMouseLeave={() => setHoverNo('')} className={`${hoverNo === index ? 'md:h-[298px] xl:h-[378px]' : 'md:h-[270px] xl:h-[350px]'} min-w-[70vw] h-auto pb-4 bg-gray-200 flex flex-col rounded-3xl p-1 sm:min-w-[40vw] md:min-w-[30vw] lg:min-w-[25vw] duration-300 transition-all ease-in-out`}>
-                                <div className='w-full h-60 xl:max-h-[470px]'>
-                                    <img src={selectedImages[product._id] || product?.Image} alt="image" className='w-full h-full object-cover bg-gray-900 rounded-3xl ' />
+                                <div className='w-full h-52 xl:max-h-[400px]'>
+                                    <img src={selectedImages[product._id] || product?.Image} alt="image" className='w-full h-full object-cover bg-gray-900 rounded-3xl mt-1' />
                                 </div>
                                 <div className='w-full h-auto flex justify-between mt-2 px-2 xl:text-2xl'>
                                     <span className='font-marcellus text-[#090909] w-[90%]'>{product.name}</span>
@@ -32,7 +32,7 @@ function Collections({ data }) {
                                 <span className='text-[#5A5A5A] text-xs px-2 xl:text-base'>{product.category}</span>
                                 <div
                                     className={`${hoverNo === index ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-5"
-                                        } md:w-full md:h-[30px] xl:h-[50px] md:flex md:justify-between md:mt-4 md:items-center md:px-2 transition-all duration-300 ease-in-out`}
+                                        } md:w-full md:h-[100px] xl:h-[100px] md:flex md:justify-between md:mt-4 md:items-center md:px-2 transition-all duration-300 ease-in-out`}
                                 >
                                     <span className="flex gap-2">
                                         <span

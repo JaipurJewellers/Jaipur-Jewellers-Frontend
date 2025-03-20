@@ -2,6 +2,7 @@ import React from 'react'
 import { FaWhatsapp } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
+import { MdEmail } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
 function Footer() {
@@ -43,7 +44,7 @@ function Footer() {
                     <div className='flex flex-col text-white'>
                         <span className='font-bold text-lg lg:text-lg'>Contact</span>
                         <span className='text-xs mt-4 active:text-gray-100 flex gap-2 items-center md:hover:text-gray-100 cursor-pointer lg:text-base xl:mt-8'><LuPhone size={20} /> +91 88104 51624</span>
-                        <span className='text-xs mt-1 active:text-gray-100 flex gap-2 md:hover:text-gray-100 cursor-pointer lg:text-base'><LuPhone size={20} /> jaipurjewellers.online@gmail.com</span>
+                        <span className='text-xs mt-1 active:text-gray-100 flex gap-2 md:hover:text-gray-100 cursor-pointer lg:text-base'><MdEmail size={20} /> jaipurjewellers.online@gmail.com</span>
                     </div>
                 </div>
             </div>

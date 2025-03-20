@@ -73,7 +73,7 @@ function Shop() {
                         </div>
                         <div className='product-slider w-full h-auto flex overflow-scroll font-marcellus gap-3 md:w-auto'>
                             {
-                                ["Diamond", "Jwellery", "Pendant", "Stone", "Bracelet","Ring"].map((item, index) => (
+                                ["Diamond", "Jewellery", "Pendant", "Stone", "Bracelet","Ring"].map((item, index) => (
                                     <div key={index} onClick={() => setSelectedCategory(item)} className={`${selectedCategory === item ? 'bg-[#1A3A37] text-[#FEFEFE]' : 'border-[1px] border-[#B6B6B7] text-[#B6B6B7]'} min-w-[110px] h-auto flex justify-center items-center py-2 rounded-xl cursor-pointer lg:py-4 lg:w-[150px] `} >{item}</div>
                                 ))
                             }

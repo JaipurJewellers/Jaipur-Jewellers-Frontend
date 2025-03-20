@@ -16,7 +16,7 @@ function Info() {
             image: Business,
             number: "5+",
             title: "Store Locations",
-            description: "Captivatingly Classy Jewelry for the Discerning Unveiling the Essence of Timelessness."
+            description: "Captivatingly Classy jewellery for the Discerning Unveiling the Essence of Timelessness."
         },
         {
             image: Ring,

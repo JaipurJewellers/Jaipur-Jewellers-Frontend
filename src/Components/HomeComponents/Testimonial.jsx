@@ -89,12 +89,9 @@ function Testimonial() {
                     </div>
                 </div>
                 <div className='w-full h-[80vh] flex justify-center items-center relative md:h-[50vh] md:w-[50vw] lg:w-[45vw] xl:h-[60vh]'>
-                <video 
-    src={Video} 
-    className='w-[80%] h-[80%] object-cover rounded-3xl sm:w-[50%] md:w-[80%] xl:h-full' 
-    autoPlay 
-    loop 
-/>
+                <video className='w-[80%] h-[80%] object-cover rounded-3xl sm:w-[50%] md:w-[80%] xl:h-full' autoPlay loop>
+                    <source src={Video} type="video/mp4" />
+                </video>
 
                     {/* <img src={Star1} alt="star" className='w-10 h-10 absolute bottom-20 left-12 sm:left-44 md:left-10 md:bottom-12 lg:left-32 xl:left-40 2xl:bottom-10' />
                     <img src={BigStar} alt="star" className='w-24 h-24 absolute top-10 right-10 sm:right-44 md:right-5 md:top-6 lg:right-28 lg:w-28 lg:h-28 lg:top-0 xl:right-32 xl:w-40 xl:h-40 xl:-top-5' /> */}

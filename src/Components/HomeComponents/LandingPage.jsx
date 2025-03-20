@@ -15,24 +15,24 @@ import { NavLink } from 'react-router-dom';
 import Main from '../../assets/image1.png'
 import Pedant from '../../assets/Images/Pedant.webp'
 import Earring from '../../assets/Images/earring.webp'
-import Bracelet from "../../assets/Images/Bracelet.jpg"
+import Bracelet from "../../assets/Newbracelets/1.png"
 
 import { useEffect, useRef, useState } from 'react';
 import diamond from '../../assets/Images/diamond.jpg'
 import Gemstone from '../../assets/Images/gemstone.jpg'
 import Gold from '../../assets/Images/gold.jpg';
-import B1 from '../../assets/Bracelet/b1.jpg';
-import B2 from '../../assets/Bracelet/b2.jpg';
-import B3 from '../../assets/Bracelet/b3.jpg';
-import R1 from '../../assets/Rings/r1.jpg';
-import R2 from '../../assets/Rings/r2.jpg';
-import R3 from '../../assets/Rings/r3.jpg';
-import ER1 from '../../assets/Earrings/er1.jpg';
-import ER2 from '../../assets/Earrings/er2.jpg';
-import ER3 from '../../assets/Earrings/er3.jpg';
-import P1 from '../../assets/Pendants/p1.jpg';
-import P2 from '../../assets/Pendants/p2.jpg';
-import P3 from '../../assets/Pendants/p3.jpg';
+import B1 from '../../assets/Newbracelets/5.png';
+import B2 from '../../assets/Newbracelets/6.png';
+import B3 from '../../assets/Newbracelets/4.png';
+import R1 from '../../assets/Newring/2.png';
+import R2 from '../../assets/Newring/4.png';
+import R3 from '../../assets/Newring/6.png';
+import ER1 from '../../assets/Earrings/4.png';
+import ER2 from '../../assets/Earrings/5.png';
+import ER3 from '../../assets/Earrings/6.png';
+import P1 from '../../assets/Newpendant/2.png';
+import P2 from '../../assets/Newpendant/3.png';
+import P3 from '../../assets/Newpendant/5.png';
 function LandingPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
@@ -46,10 +46,10 @@ function LandingPage() {
     }, []);
 
     const carousal = [
-        { id: 1, src: Main, alt: "Picture 1", title: 'Bracelets Collection', content: 'Wrap Your Wrist in Elegance', otherContent: 'Handcrafted Bracelets That Tell a Story',Category1:R1,Category2: R2,Category3: R3 },
+        { id: 1, src: Main, alt: "Picture 1", title: 'Rings Collection', content: 'Wrap Your Wrist in Elegance', otherContent: 'Handcrafted Bracelets That Tell a Story',Category1:R1,Category2: R2,Category3: R3 },
         { id: 2, src: Pedant, alt: "Picture 2", title: 'Pendant Collection', content: 'A Circle of Timeless Beauty', otherContent: 'Rings That Symbolize Love, Power & Tradition.',Category1: P1,Category2: P2,Category3: P3},
         { id: 3, src: Earring, alt: "Picture 3", title: 'Earrings (Studs) Collection', content: 'Small in Size, Grand in Elegance', otherContent: 'Jaipur’s Finest Stud Earrings for Every Occasion.',Category1: ER1,Category2: ER2,Category3: ER3 },
-        { id: 4, src: Bracelet, alt: "Picture 4", title: 'Pendants Collection', content: 'Wear Your Story Close to Your Heart', otherContent: 'Discover Handcrafted Pendants That Speak to You.',Category1: B1,Category2: B2,Category3: B3 }
+        { id: 4, src: Bracelet, alt: "Picture 4", title: 'Bracelets Collection', content: 'Wear Your Story Close to Your Heart', otherContent: 'Discover Handcrafted Pendants That Speak to You.',Category1: B1,Category2: B2,Category3: B3 }
     ];
 
     useEffect(()=>{
@@ -64,7 +64,7 @@ function LandingPage() {
                     <NavLink to={'https://wa.link/9zk4fk'} target='_blank'><FaWhatsapp size={20} className='text-white' /></NavLink>
                 </div>
                 <div className='hidden md:flex md:text-white md:text-xs md:items-center lg:text-sm xl:text-base'>
-                    ✨ From the Heart of Jaipur to Your Hands – Timeless Jewelry, Crafted for You. ✨
+                    ✨ From the Heart of Jaipur to Your Hands – Timeless Jewellery, Crafted for You. ✨
                 </div>
                 <div className=''>
                     <select name="options" id="options" className="bg-[#1A3A37] outline-none text-white p-2">

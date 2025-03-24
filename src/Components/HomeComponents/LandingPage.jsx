@@ -13,9 +13,9 @@ import Marquee from 'react-fast-marquee';
 import Shine from '../../assets/Images/shine.png'
 import { NavLink } from 'react-router-dom';
 import Main from '../../assets/image1.png'
-import Pedant from '../../assets/Images/Pedant.webp'
-import Earring from '../../assets/Images/earring.webp'
-import Bracelet from "../../assets/Newbracelets/1.png"
+import Pedant from '../../assets/Newpendant/1.png'
+import Earring from '../../assets/Earrings/2.png'
+import Bracelet from "../../assets/Newbracelets/3.png"
 
 import { useEffect, useRef, useState } from 'react';
 import diamond from '../../assets/Images/diamond.jpg'

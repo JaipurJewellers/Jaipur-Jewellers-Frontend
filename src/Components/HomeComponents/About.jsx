@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Info from '../Utils/Info';
 import { NavLink } from 'react-router-dom';
 import SignImg from '../../assets/sign.png';
-import Pedant from '../../assets/Newpendant/1.png';
-import Perls from '../../assets/Earrings/2.png';
-import Bracelet from "../../assets/Newbracelets/2.png";
+import Pedant from '../../assets/newPendent11.png';
+import Perls from '../../assets/newEarring11.png';
+import Bracelet from "../../assets/newBraclet11.png";
 import Rings from "../../assets/Newring/1.png";
 import Stone from "../../assets/Images/Stone.webp";
 

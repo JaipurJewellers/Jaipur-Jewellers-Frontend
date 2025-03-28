@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Info from '../Utils/Info';
 import { NavLink } from 'react-router-dom';
 import SignImg from '../../assets/sign.png';
-import Pedant from '../../assets/newPendent11.png';
-import Perls from '../../assets/newEarring11.png';
-import Bracelet from "../../assets/newBraclet11.png";
-import Rings from "../../assets/Newring/1.png";
+import Pedant from '../../assets/jj_images2/pendant.jpg';
+import Perls from '../../assets/jj_images2/earring.jpg';
+import Bracelet from "../../assets/jj_images2/bracelet.jpg";
+import Rings from "../../assets/jj_images2/ring.jpg";
 import Stone from "../../assets/Images/Stone.webp";
 
 function About() {

@@ -25,7 +25,7 @@ function Shop() {
             const response = await axios.get(`${backend}/api/v1/products/get-all-products`);
             const productArr = response.data;
             setAllProducts(productArr);
-            
+
             const specificProducts = productArr.filter(item => item.category === selectedCategory);
             if (response.status === 200) {
                 setProducts(specificProducts);
@@ -46,7 +46,7 @@ function Shop() {
 
     function handleSearchProduct() {
         if (searchProduct.length > 0) {
-            const filteredProducts = allProducts.filter(product => 
+            const filteredProducts = allProducts.filter(product =>
                 product.name.toLowerCase().includes(searchProduct.toLowerCase())
             );
             setProducts(filteredProducts);
@@ -89,7 +89,7 @@ function Shop() {
                         {/* ✅ Category Selection */}
                         <div className='product-slider w-full h-auto flex overflow-scroll font-marcellus gap-3 md:w-auto'>
                             {["Necklace", "Pendant", "Earring", "Ring", "Bracelet"].map((item, index) => (
-                                <div key={index} onClick={() => setSelectedCategory(item)} 
+                                <div key={index} onClick={() => setSelectedCategory(item)}
                                     className={`${selectedCategory === item ? 'bg-[#1A3A37] text-[#FEFEFE]' : 'border-[1px] border-[#B6B6B7] text-[#B6B6B7]'} min-w-[110px] h-auto flex justify-center items-center py-2 rounded-xl cursor-pointer lg:py-4 lg:w-[150px]`}>
                                     {item}
                                 </div>
@@ -101,37 +101,60 @@ function Shop() {
                         {products.length > 0 ? (
                             <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6'>
                                 {products.map((product, index) => (
-                                    <NavLink state={{ product }} to={`/single-product/${product._id}`} key={index} 
-                                        className='group w-[300px] h-auto flex flex-col mx-auto bg-[#FEFDFD] p-1 rounded-[29px] gap-2 lg:p-1.5 cursor-pointer md:hover:bg-[#1A3A37] md:hover:text-white duration-500 ease-in-out transition-all'>
-                                        <img src={selectedImages[product._id] || product?.Image} alt="Product Image" className='w-full h-[200px] mx-auto bg-gray-400 object-cover rounded-[30px] lg:h-[250px]' />
-                                        <div className='w-full h-auto flex flex-col mt-2 items-center px-3 lg:mt-3'>
-                                            <div className='w-full h-auto flex justify-between items-center'>
-                                                <span className='font-marcellus text-2xl'>{product.name}</span>
-                                                <GoHeart size={20} className='text-[#B3B3B3]' />
-                                            </div>
-                                            <span className='w-full h-auto text-[#5A5A5A] text-sm lg:text-base group-hover:text-white duration-500 ease-in-out transition-all'>{product.category}</span>
-                                            <div className='w-full h-auto flex justify-between my-2 items-center lg:mt-4'>
-                                                <span className='flex gap-2'>
-                                                    {[product?.Image1, product?.Image2, product?.Image3].map((img, idx) => (
-                                                        img && (
-                                                            <span key={idx}
-                                                                onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    e.stopPropagation();
-                                                                    setSelectedImages((prevState) => ({
-                                                                        ...prevState,
-                                                                        [product._id]: img.image,
-                                                                    }));
-                                                                }}
-                                                                className="h-4 w-4 border-[1px] lg:border-2 rounded-full lg:w-6 lg:h-6 cursor-pointer"
-                                                                style={{ backgroundColor: `#${img.color}` }}></span>
-                                                        )
-                                                    ))}
+                                    <div key={index} className='group w-[300px] h-auto flex flex-col mx-auto'>
+                                        <NavLink
+                                            state={{ product }}
+                                            to={`/single-product/${product._id}`}
+                                            className='w-full h-full flex flex-col bg-[#FEFDFD] p-1 rounded-[29px] gap-2 lg:p-1.5 cursor-pointer md:hover:bg-[#1A3A37] md:hover:text-white duration-500 ease-in-out transition-all'
+                                        >
+                                            <img
+                                                src={selectedImages[product._id] || product?.Image}
+                                                alt="Product Image"
+                                                className='w-full h-[200px] mx-auto bg-gray-400 object-cover rounded-[30px] lg:h-[250px]'
+                                            />
+                                            <div className='w-full h-auto flex flex-col mt-2 items-center px-3 lg:mt-3'>
+                                                <div className='w-full h-auto flex justify-between items-center'>
+                                                    <span className='font-marcellus text-2xl'>{product.name}</span>
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            // Add your like functionality here
+                                                        }}
+                                                        className='text-[#B3B3B3] hover:text-red-500 transition-colors duration-200'
+                                                    >
+                                                        <GoHeart size={20} />
+                                                    </button>
+                                                </div>
+                                                <span className='w-full h-auto text-[#5A5A5A] text-sm lg:text-base group-hover:text-white duration-500 ease-in-out transition-all'>
+                                                    {product.category}
                                                 </span>
-                                                <span className='font-marcellus text-lg lg:text-xl'>${product.quantityPrices[0].price}</span>
+                                                <div className='w-full h-auto flex justify-between my-2 items-center lg:mt-4'>
+                                                    <span className='flex gap-2'>
+                                                        {[product?.Image1, product?.Image2, product?.Image3].map((img, idx) => (
+                                                            img && (
+                                                                <button
+                                                                    key={idx}
+                                                                    onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        e.stopPropagation();
+                                                                        setSelectedImages((prevState) => ({
+                                                                            ...prevState,
+                                                                            [product._id]: img.image,
+                                                                        }));
+                                                                    }}
+                                                                    className="h-4 w-4 border-[1px] lg:border-2 rounded-full lg:w-6 lg:h-6 cursor-pointer"
+                                                                    style={{ backgroundColor: `#${img.color}` }}
+                                                                    aria-label={`Select ${img.color} color variant`}
+                                                                />
+                                                            )
+                                                        ))}
+                                                    </span>
+                                                    <span className='font-marcellus text-lg lg:text-xl'>${product.quantityPrices[0].price}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </NavLink>
+                                        </NavLink>
+                                    </div>
                                 ))}
                             </div>
                         ) : (

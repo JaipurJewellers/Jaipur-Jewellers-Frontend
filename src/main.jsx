@@ -23,13 +23,14 @@ import ForgotPassword from './Components/ForgotPassword.jsx'
 import BlogPage from './Components/BlogPage.jsx'
 import Blogs from './Components/AdminComponents/Blogs.jsx'
 import CreateBlog from './Components/AdminComponents/CreateBlog.jsx'
-
+import FavoritesPage from './Components/FavoritesPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<App />}>
         <Route path='/' element={<Home />} />
+        <Route path='/collections' element={<Home scrollTo="collections" />} />
         <Route path='/about' element={<About />} />
         <Route path='/blog/:id?' element={<BlogPage />} />
         <Route path='/contact-us' element={<ContactUs />} />
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         <Route path='/login' element={<Login />} />
         <Route path='/signup-page' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
       </Route>
       <Route path='/admin' element={<AdminLogin />} />
       <Route path='/dashboard' element={<Dashboard />} />

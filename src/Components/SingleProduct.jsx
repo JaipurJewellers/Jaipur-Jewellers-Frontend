@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Header from './Header'
 import { FaArrowRight } from "react-icons/fa6";
 import { LuPencilLine } from "react-icons/lu";
-import { GoHeart } from "react-icons/go";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
 import { IoMdStar } from "react-icons/io";
 import { IoMdStarHalf } from "react-icons/io";
@@ -10,10 +10,23 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import { MdOutlineDone } from "react-icons/md";
 import AuthContext from './AuthContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { FacebookShareButton } from "react-share";
+import { TwitterShareButton } from "react-share";
+import { WhatsappShareButton } from "react-share";
+import { EmailShareButton } from "react-share";
 
+import { FacebookIcon } from "react-share";
+import { TwitterIcon } from "react-share";
+import { WhatsappIcon } from "react-share";
+import { EmailIcon } from "react-share";
+
+
+const backend = import.meta.env.VITE_BACKEND_URL;
 function SingleProduct() {
     const { addToCart } = useContext(CartContext)
-    const { isAuthenticated } = useContext(AuthContext)
+    const { isAuthenticated, user } = useContext(AuthContext)
     const location = useLocation()
     const { product } = location.state || {}
     const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -21,23 +34,70 @@ function SingleProduct() {
     const [selectedQuantityPrice, setSelectedQuantityPrice] = useState(product?.quantityPrices?.[0]);
     const [productImages, setProductImages] = useState([])
     const [mainImage, setMainImage] = useState('')
-
+    const [isFavorite, setIsFavorite] = useState(false)
+    const [showShareOptions, setShowShareOptions] = useState(false)
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
+
+    // Check if product is in favorites on load
+    useEffect(() => {
+        if (isAuthenticated && product) {
+            checkIfFavorite();
+        }
+    }, [isAuthenticated, product])
 
     useEffect(() => {
         if (product) {
-            // Filter out any undefined/null images
             const availableImages = [
                 product?.Image,
                 product?.Image1?.image,
                 product?.Image2?.image,
                 product?.Image3?.image
-            ].filter(img => img); // This removes any falsy values
+            ].filter(img => img);
             
             setProductImages(availableImages);
             setMainImage(availableImages[0] || '');
         }
     }, [product]);
+
+    const checkIfFavorite = async () => {
+        try {
+            const response = await axios.get(`${backend}/api/v1/favorites/my-favorites`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+            });
+            const isFav = response.data.favorites.some(fav => fav.product_id === product.product_id);
+            setIsFavorite(isFav);
+        } catch (error) {
+            console.error('Error checking favorites:', error);
+        }
+    };
+
+    const handleAddToFavorites = async () => {
+        if (!isAuthenticated) {
+            toast.warning("Please login to add to favorites");
+            navigate('/login');
+            return;
+        }
+
+        try {
+            if (isFavorite) {
+                await axios.delete(`${backend}/api/v1/favorites/remove/${product.product_id}`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+                setIsFavorite(false);
+                toast.success("Removed from favorites");
+            } else {
+                await axios.post(`${backend}/api/v1/favorites/add`, { productId: product.product_id }, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+                });
+                setIsFavorite(true);
+                toast.success("Added to favorites");
+            }
+        } catch (error) {
+            console.error('Error updating favorites:', error);
+            toast.error(error.response?.data?.message || "Failed to update favorites");
+        }
+    };
 
     const handleAddToCart = () => {
         if (!product) return;
@@ -54,10 +114,17 @@ function SingleProduct() {
             setIsAddedToCart(true);
             setTimeout(() => setIsAddedToCart(false), 2000);
         } else {
-            alert("To Add this product to your cart, you need to login first")
+            toast.warning("Please login to add to cart");
             navigate('/login')
         }
     };
+
+    const handleShare = () => {
+        setShowShareOptions(!showShareOptions);
+    };
+
+    const shareUrl = window.location.href;
+    const shareTitle = `Check out this product: ${product?.name}`;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -130,14 +197,48 @@ function SingleProduct() {
                             </button>
                         </div>
                         <div className='w-full h-auto flex justify-center items-center flex-wrap gap-3'>
-                            <div className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'>
+                            <button 
+                                className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'
+                            >
                                 <LuPencilLine className='md:size-5' /> Customize
-                            </div>
-                            <div className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'>
-                                <GoHeart className='md:size-5' /> Favorites
-                            </div>
-                            <div className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'>
-                                <GoShareAndroid className='md:size-5' /> Share
+                            </button>
+                            
+                            <button 
+                                onClick={handleAddToFavorites}
+                                className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'
+                            >
+                                {isFavorite ? (
+                                    <GoHeartFill className='md:size-5 text-red-500' />
+                                ) : (
+                                    <GoHeart className='md:size-5' />
+                                )} 
+                                Favorites
+                            </button>
+                            
+                            <div className='relative'>
+                                <button 
+                                    onClick={handleShare}
+                                    className='w-[140px] h-auto flex justify-center items-center gap-3 font-marcellus bg-[#FAFAFA] border-[1px] border-[#1111111A] py-2 rounded-2xl cursor-pointer md:text-base md:w-[160px] md:py-3 lg:w-[140px]'
+                                >
+                                    <GoShareAndroid className='md:size-5' /> Share
+                                </button>
+                                
+                                {showShareOptions && (
+                                    <div className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white p-3 rounded-lg shadow-lg flex gap-2 z-50'>
+                                        <FacebookShareButton url={shareUrl} quote={shareTitle}>
+                                            <FacebookIcon size={32} round />
+                                        </FacebookShareButton>
+                                        <TwitterShareButton url={shareUrl} title={shareTitle}>
+                                            <TwitterIcon size={32} round />
+                                        </TwitterShareButton>
+                                        <WhatsappShareButton url={shareUrl} title={shareTitle}>
+                                            <WhatsappIcon size={32} round />
+                                        </WhatsappShareButton>
+                                        <EmailShareButton url={shareUrl} subject={shareTitle}>
+                                            <EmailIcon size={32} round />
+                                        </EmailShareButton>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

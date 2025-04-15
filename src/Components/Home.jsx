@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import LandingPage from './HomeComponents/LandingPage'
 import About from './HomeComponents/About'
 import Products from './HomeComponents/Products'
@@ -8,9 +9,10 @@ import axios from 'axios'
 
 const backend = import.meta.env.VITE_BACKEND_URL
 
-function Home() {
+function Home({ scrollTo }) {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
+    const location = useLocation()
 
     async function fetchProducts() {
         try {
@@ -21,7 +23,7 @@ function Home() {
                 setLoading(false)
             }
         } catch (error) {
-            console.log("error while fetching products", error);
+            console.log("error while fetching products", error)
             setLoading(true)
         }
     }
@@ -30,12 +32,33 @@ function Home() {
         fetchProducts()
     }, [])
 
+    useEffect(() => {
+        if (scrollTo) {
+            const timer = setTimeout(() => {
+                const element = document.getElementById(scrollTo)
+                if (element) {
+                    element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    })
+                    
+                    // Update URL without triggering navigation
+                    window.history.replaceState({}, '', '/collections')
+                }
+            }, 300) // Slightly longer delay to ensure components are rendered
+            
+            return () => clearTimeout(timer)
+        }
+    }, [scrollTo, location, products]) // Added products to dependencies
+
     return (
         <>
             <LandingPage />
             <About data={products} />
             <Products data={products} />
-            <Collections data={products} />
+            <div id="collections">
+                <Collections data={products} />
+            </div>
             <Testimonial />
         </>
     )

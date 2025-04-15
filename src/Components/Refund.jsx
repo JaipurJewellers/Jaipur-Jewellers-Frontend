@@ -15,8 +15,8 @@ const Refund = () => {
 
         <div className="text-center space-y-4 md:space-y-6 text-gray-700 text-sm md:text-base">
           <p>
-            As our products and spiritual and personalised as per the client's
-            need, so we don't have any refund or return policy.
+            We are not offering any refunds.
+For exception case, once the refund is approved, it will take 7 business days to credit the amount to the customer's bank account.
           </p>
         </div>
       </div>

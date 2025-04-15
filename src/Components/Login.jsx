@@ -84,6 +84,7 @@ const Login = () => {
             });
 
             const result = await response.json();
+            localStorage.setItem("token", result.token)
 
             if (response.ok) {
                 setMessage(result.message);

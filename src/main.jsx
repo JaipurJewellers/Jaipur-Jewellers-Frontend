@@ -24,6 +24,10 @@ import BlogPage from './Components/BlogPage.jsx'
 import Blogs from './Components/AdminComponents/Blogs.jsx'
 import CreateBlog from './Components/AdminComponents/CreateBlog.jsx'
 import FavoritesPage from './Components/FavoritesPage.jsx'
+import Terms from './Components/Terms.jsx'
+import Privacy from './Components/Privacy.jsx'
+import Refund from './Components/Refund.jsx'
+import Shipping from './Components/Shipping.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +42,10 @@ const router = createBrowserRouter(
         <Route path='/my-cart/checkout' element={<Checkout />} />
         <Route path='/single-product/:id' element={<SingleProduct />} />
         <Route path='/shop' element={<Shop />} />
+        <Route path='/termsandconditions' element={<Terms />} />
+        <Route path='/privacy-policy' element={<Privacy />} />
+        <Route path='/refund-policy' element={<Refund />} />
+        <Route path='/shipping-policy' element={<Shipping />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup-page' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />

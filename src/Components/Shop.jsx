@@ -150,7 +150,7 @@ function Shop() {
                                                             )
                                                         ))}
                                                     </span>
-                                                    <span className='font-marcellus text-lg lg:text-xl'>${product.quantityPrices[0].price}</span>
+                                                    <span className='font-marcellus text-lg lg:text-xl'>₹{product.quantityPrices[0].price}</span>
                                                 </div>
                                             </div>
                                         </NavLink>

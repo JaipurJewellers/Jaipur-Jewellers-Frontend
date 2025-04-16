@@ -28,6 +28,7 @@ import Terms from './Components/Terms.jsx'
 import Privacy from './Components/Privacy.jsx'
 import Refund from './Components/Refund.jsx'
 import Shipping from './Components/Shipping.jsx'
+import { FavoritesProvider } from './Components/FavoritesContext.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

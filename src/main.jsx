@@ -63,10 +63,12 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <FavoritesProvider>
     <CartProvider>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </CartProvider>
+    </FavoritesProvider>
   </StrictMode>,
 )

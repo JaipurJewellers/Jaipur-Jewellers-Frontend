@@ -10,41 +10,32 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import { MdOutlineDone } from "react-icons/md";
 import AuthContext from './AuthContext';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { FacebookShareButton } from "react-share";
-import { TwitterShareButton } from "react-share";
-import { WhatsappShareButton } from "react-share";
-import { EmailShareButton } from "react-share";
+import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, EmailShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon, WhatsappIcon, EmailIcon } from "react-share";
+import { useFavorites } from './FavoritesContext';
 
-import { FacebookIcon } from "react-share";
-import { TwitterIcon } from "react-share";
-import { WhatsappIcon } from "react-share";
-import { EmailIcon } from "react-share";
-
-
-const backend = import.meta.env.VITE_BACKEND_URL;
 function SingleProduct() {
-    const { addToCart } = useContext(CartContext)
-    const { isAuthenticated, user } = useContext(AuthContext)
-    const location = useLocation()
-    const { product } = location.state || {}
+    const { addToCart } = useContext(CartContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
+    const location = useLocation();
+    const { product } = location.state || {};
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [quantity, setQuantity] = useState(1);
-    const [selectedQuantityPrice, setSelectedQuantityPrice] = useState(product?.quantityPrices?.[0]);
-    const [productImages, setProductImages] = useState([])
-    const [mainImage, setMainImage] = useState('')
-    const [isFavorite, setIsFavorite] = useState(false)
-    const [showShareOptions, setShowShareOptions] = useState(false)
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
+    const [selectedQuantityPrice] = useState(product?.quantityPrices?.[0]);
+    const [productImages, setProductImages] = useState([]);
+    const [mainImage, setMainImage] = useState('');
+    const [showShareOptions, setShowShareOptions] = useState(false);
+    const navigate = useNavigate();
 
     // Check if product is in favorites on load
     useEffect(() => {
-        if (isAuthenticated && product) {
-            checkIfFavorite();
+        if (product) {
+            const isFav = favorites.some(fav => fav._id === product._id);
+            setIsFavorite(isFav);
         }
-    }, [isAuthenticated, product])
+    }, [favorites, product]);
 
     useEffect(() => {
         if (product) {
@@ -60,17 +51,7 @@ function SingleProduct() {
         }
     }, [product]);
 
-    const checkIfFavorite = async () => {
-        try {
-            const response = await axios.get(`${backend}/api/v1/favorites/my-favorites`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
-            });
-            const isFav = response.data.favorites.some(fav => fav.product_id === product.product_id);
-            setIsFavorite(isFav);
-        } catch (error) {
-            console.error('Error checking favorites:', error);
-        }
-    };
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleAddToFavorites = async () => {
         if (!isAuthenticated) {
@@ -81,18 +62,13 @@ function SingleProduct() {
 
         try {
             if (isFavorite) {
-                await axios.delete(`${backend}/api/v1/favorites/remove/${product.product_id}`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                });
-                setIsFavorite(false);
+                await removeFavorite(product._id);
                 toast.success("Removed from favorites");
             } else {
-                await axios.post(`${backend}/api/v1/favorites/add`, { productId: product.product_id }, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
-                });
-                setIsFavorite(true);
+                await addFavorite(product._id);
                 toast.success("Added to favorites");
             }
+            setIsFavorite(!isFavorite);
         } catch (error) {
             console.error('Error updating favorites:', error);
             toast.error(error.response?.data?.message || "Failed to update favorites");
@@ -104,7 +80,7 @@ function SingleProduct() {
         
         if (isAuthenticated) {
             addToCart({
-                product_id: product.product_id,
+                product_id: product._id,
                 name: product.name,
                 Image: product.Image || '',
                 quantity: quantity,
@@ -155,6 +131,9 @@ function SingleProduct() {
                                     src={mainImage} 
                                     alt="main product" 
                                     className='w-full h-80 bg-gray-300 rounded-3xl object-cover xl:h-full xl:rounded-[50px]' 
+                                    onError={(e) => {
+                                        e.target.src = 'https://via.placeholder.com/300x300?text=Image+Not+Available';
+                                    }}
                                 />
                             </div>
                         )}
@@ -167,6 +146,9 @@ function SingleProduct() {
                                         alt={`product variant ${index}`} 
                                         onClick={() => setMainImage(image)} 
                                         className={`${mainImage === image ? 'border-2 border-[#344E41]' : ''} cursor-pointer w-20 h-20 bg-gray-300 rounded-xl object-cover sm:w-24 sm:h-24 lg:w-20 lg:h-20`} 
+                                        onError={(e) => {
+                                            e.target.src = 'https://via.placeholder.com/100x100?text=Image+Not+Available';
+                                        }}
                                     />
                                 ))}
                             </div>
@@ -176,7 +158,7 @@ function SingleProduct() {
                         <div className='w-full h-auto flex justify-between'>
                             <div className='w-auto h-auto flex flex-col font-marcellus mr-2 lg:mr-0 lg:ml-3'>
                                 <span className='text-[#111111B2] text-sm sm:text-base md:text-lg lg:text-base'>Price</span>
-                                <span className='text-[#111111] text-lg sm:text-2xl md:text-3xl lg:text-2xl'>${product.quantityPrices[0].price}</span>
+                                <span className='text-[#111111] text-lg sm:text-2xl md:text-3xl lg:text-2xl'>₹{product.quantityPrices[0].price.toLocaleString()}</span>
                             </div>
                             <button 
                                 onClick={handleAddToCart} 
@@ -277,9 +259,9 @@ function SingleProduct() {
                             </div>
                             <div className='w-full h-auto flex flex-col font-marcellus gap-3 md:gap-6'>
                                 <span className='text-[#111111] text-xl sm:text-2xl md:text-3xl lg:text-2xl'>Details</span>
-                                {product.details?.map((item, index) => (
+                                {Array.isArray(product.details) && product.details.map((item, index) => (
                                     <ul key={index} className='text-sm list-disc list-inside sm:text-base md:text-lg lg:text-base xl:text-lg'>
-                                        <li>{item}</li>
+                                        <li>{typeof item === 'object' ? item.details : item}</li>
                                     </ul>
                                 ))}
                             </div>

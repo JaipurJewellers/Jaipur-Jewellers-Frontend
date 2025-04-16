@@ -24,6 +24,7 @@ import BlogPage from './Components/BlogPage.jsx'
 import Blogs from './Components/AdminComponents/Blogs.jsx'
 import CreateBlog from './Components/AdminComponents/CreateBlog.jsx'
 import FavoritesPage from './Components/FavoritesPage.jsx'
+import { FavoritesProvider } from './Components/FavoritesContext.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,10 +56,12 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <FavoritesProvider>
     <CartProvider>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </CartProvider>
+    </FavoritesProvider>
   </StrictMode>,
 )

@@ -62,9 +62,9 @@ function Shop() {
     const handleFavoriteClick = async (productId, e) => {
         e.preventDefault();
         e.stopPropagation();
-
+        toast.dismiss()
         try {
-            const isFavorite = favorites.some(fav => fav._id === productId);
+            const isFavorite = favorites.some(fav => fav.product_id === productId);
             if (isFavorite) {
                 await removeFavorite(productId);
                 toast.success("Removed from favorites");
@@ -108,7 +108,7 @@ function Shop() {
             <Header color={'#FAFAFA'} />
             <div className='w-full h-auto flex flex-col py-10 bg-[#FAFAFA] gap-10'>
                 {/* Floating Favorites Button */}
-                <div 
+                <div
                     className="fixed right-6 bottom-6 z-50"
                     onMouseEnter={() => setShowFavoritesTooltip(true)}
                     onMouseLeave={() => setShowFavoritesTooltip(false)}

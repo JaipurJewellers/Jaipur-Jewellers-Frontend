@@ -29,6 +29,8 @@ import Privacy from './Components/Privacy.jsx'
 import Refund from './Components/Refund.jsx'
 import Shipping from './Components/Shipping.jsx'
 import { FavoritesProvider } from './Components/FavoritesContext.jsx'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,12 +66,23 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
     <FavoritesProvider>
-    <CartProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </CartProvider>
+      <CartProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </CartProvider>
     </FavoritesProvider>
   </StrictMode>,
 )

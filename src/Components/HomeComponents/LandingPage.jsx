@@ -67,12 +67,12 @@ function LandingPage() {
                     ✨ From the Heart of Jaipur to Your Hands – Timeless Jewellery, Crafted for You. ✨
                 </div>
                 <div className=''>
-                    <select name="options" id="options" className="bg-[#1A3A37] outline-none text-white p-2">
+                    {/* <select name="options" id="options" className="bg-[#1A3A37] outline-none text-white p-2">
                         <option value="" disabled selected>India (Rs)</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
-                    </select>
+                    </select> */}
                 </div>
             </div>
             <Header color={'#D7D7D7'} />
@@ -91,7 +91,7 @@ function LandingPage() {
                                 <div className='absolute top-0 w-full h-[75vh] md:relative '>
                                     <div className='flex flex-col absolute top-20 left-6 sm:left-40 md:left-20'>
                                         <span className='text-[#1A3A37] tracking-[3px]'>{item.title}</span>
-                                        <div className='flex flex-col px-2 text-4xl my-3 gap-3 sm:text-5xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl w-[500px]'>
+                                        <div className='flex flex-col px-2 text-4xl my-3 gap-3 sm:text-5xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl lg:w-[500px]'>
                                             {
                                                 item.content
                                             }

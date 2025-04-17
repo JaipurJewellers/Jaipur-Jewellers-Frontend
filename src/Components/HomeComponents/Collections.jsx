@@ -36,7 +36,7 @@ function Collections({ data }) {
     const handleFavoriteClick = async (productId, e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+        toast.dismiss()
         if (!token) {
             toast.warning("Please login to add favorites");
             navigate('/login');

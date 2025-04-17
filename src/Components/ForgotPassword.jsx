@@ -91,7 +91,6 @@ const ForgotPassword = () => {
 
 
             const result = await response.json();
-            console.log(result);
             if (response.ok) {
                 setMessage(result.message);
                 toast.success("Password reset successfully.");

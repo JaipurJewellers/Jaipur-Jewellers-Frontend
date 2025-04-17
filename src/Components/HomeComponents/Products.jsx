@@ -11,14 +11,14 @@ function Products({ data }) {
   const [selectedImages, setSelectedImages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
     try {
       setIsLoading(true);
       const safeData = Array.isArray(data) ? data : [];
-      
+
       setProducts(safeData.slice(0, 3));
       setFloatingProducts(safeData.slice(0, 5));
     } catch (err) {
@@ -33,7 +33,8 @@ function Products({ data }) {
   const handleFavoriteClick = async (productId, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+    toast.dismiss()
+
     try {
       const isFavorite = favorites.some(fav => fav.product_id === productId);
       if (isFavorite) {
@@ -82,7 +83,7 @@ function Products({ data }) {
             <span>with Exquisite Jewellery</span>
           </div>
           <div className="w-full h-auto flex flex-col bg-[#FAFAFA]">
-            <div className="product-slider w-full h-auto flex my-5 overflow-x-scroll gap-6 px-8 xl:gap-3 xl:px-2 xl:overflow-hidden">
+            <div className="product-slider w-full h-auto flex py-6 overflow-x-scroll gap-6 px-8 xl:gap-3 xl:px-2 xl:overflow-hidden">
               {products?.length > 0 ? (
                 products.map((product, index) => {
                   const productId = product?._id || `temp-${index}`;
@@ -114,7 +115,7 @@ function Products({ data }) {
                             <span className="font-marcellus text-lg truncate max-w-[70%]">
                               {productName}
                             </span>
-                            <button 
+                            <button
                               onClick={(e) => handleFavoriteClick(product.product_id, e)}
                               className="text-[#B3B3B3] hover:text-red-500 flex-shrink-0 ml-2"
                               aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}

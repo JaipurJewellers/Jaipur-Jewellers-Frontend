@@ -70,6 +70,7 @@ function Checkout() {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         // Get JWT token from local storage
         const token = localStorage.getItem("authToken");
 

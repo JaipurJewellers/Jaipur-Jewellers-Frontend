@@ -91,13 +91,6 @@ function MyCart() {
                     </div>
                     <div className='w-full h-auto flex items-center md:w-[60vw] md:items-start md:pt-10 lg:w-[50vw] xl:w-[40vw]'>
                         <div className='w-full h-auto flex flex-col px-5 gap-5'>
-                            <div className='w-full h-auto flex justify-center items-center border-[1px] border-[#1A3A37] py-3 gap-3 rounded-xl bg-[#E4E0DA40] font-marcellus lg:gap-5'>
-                                <span className='w-10 h-10 flex justify-center items-center bg-[#1A3A37] rounded-lg'>
-                                    <LuTicket size={20} className='text-white' />
-                                </span>
-                                <span className='text-[#383838]'>Have a coupon code?</span>
-                                <span className='text-[#383838]'>{'>'}</span>
-                            </div>
                             <div className='w-full h-auto flex flex-col border-[1px] border-[#1A3A37] p-3 font-marcellus rounded-lg lg:p-5'>
                                 <span className='lg:text-lg'>Summary</span>
                                 <div className='my-4 w-full h-auto flex justify-between'>

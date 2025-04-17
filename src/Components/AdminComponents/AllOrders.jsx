@@ -82,7 +82,7 @@ function AllOrders() {
                 </div>
                 <h1 className='text-center text-[#1A3A37] font-marcellus text-xl font-semibold my-7 md:text-3xl md:my-10 xl:text-4xl'>Orders History</h1>
                 {
-                    userEmail === 'jwellery@admin.com'
+                    userEmail === 'admin@gmail.com'
                     ?<>
                             {orders.length > 0 ? (
                                 <table className="min-w-full overflow-x-scroll">
@@ -118,7 +118,7 @@ function AllOrders() {
                                         {currentOrders.map((order) => (
                                             <tr key={order._id} className="hover:bg-gray-50">
                                                 <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                                                    {/* {order.MUID.slice(-5)} */}
+                                                    {order._id}
                                                 </td>
                                                 <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
                                                     {order.shippingInfo.firstName}

@@ -108,7 +108,7 @@ function Header({ color }) {
                     <NavLink to='/contact-us' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Contact Us</NavLink>
                 </div>
 
-                {isAuthenticated && userEmail === "jwellery@admin.com" && (
+                {isAuthenticated && userEmail === "admin@gmail.com" && (
                     <div className='w-auto h-auto flex xl:gap-3 items-center'>
                         <NavLink to='/dashboard' className="text-[#1A3A37] mx-4">
                             <MdDashboard size={28} />
@@ -116,8 +116,8 @@ function Header({ color }) {
                         <div ref={dropdownRef} className='w-auto h-auto flex items-center justify-center'>
                             <FaUserCircle onClick={handleDropDown} size={28} className='text-[#1A3A37] mx-4 cursor-pointer' />
                             {dropdown && (
-                                <div className={`${inHome ? 'top-14' : 'top-12'} absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 `}>
-                                    {userEmail === "jwellery@admin.com" && (
+                                <div className={`${inHome ? 'top-16' : 'top-14'} absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 lg:right-2`}>
+                                    {userEmail === "admin@gmail.com" && (
                                         <>
                                             <NavLink
                                                 to="/view-orders"
@@ -148,7 +148,7 @@ function Header({ color }) {
                         </div>
                     </div>
                 )}
-                {isAuthenticated === true && userEmail !== "jwellery@admin.com" ? (
+                {isAuthenticated === true && userEmail !== "admin@gmail.com" ? (
                     <>
                         <div className='flex gap-7'>
                             <div className='flex gap-5 items-center'>
@@ -157,7 +157,7 @@ function Header({ color }) {
                                         <CiUser size={20} />
                                     </span>
                                     {dropdown2 && (
-                                        <div className={`${inHome ? 'top-12' : 'top-12'} absolute right-10 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 lg:right-40 `}>
+                                        <div className={`${inHome ? 'top-16' : 'top-14'} absolute right-10 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 lg:right-2 `}>
                                             <NavLink
                                                 to='/view-profile'
                                                 className="flex justify-center cursor-pointer text-lg px-4 py-2 text-gray-800 hover:bg-gray-200"
@@ -182,7 +182,7 @@ function Header({ color }) {
                             <div className='lg:hidden'> 
                                 {sideBar ? <IoClose size={25} onClick={() => setSideBar(false)} className='cursor-pointer' /> : <FaBarsStaggered size={25} onClick={() => setSideBar(true)} className='cursor-pointer' />} 
                             </div>
-                            <span className='hidden lg:block lg:px-4 lg:py-2 lg:rounded-xl lg:font-marcellus lg:bg-[#1A3A37] lg:text-white 2xl:px-5 lg:cursor-pointer'>Get Special Offers</span>
+                            {/* <span className='hidden lg:block lg:px-4 lg:py-2 lg:rounded-xl lg:font-marcellus lg:bg-[#1A3A37] lg:text-white 2xl:px-5 lg:cursor-pointer'>Get Special Offers</span> */}
                         </div>
                     </>
                 ) : (
@@ -191,7 +191,7 @@ function Header({ color }) {
                     </NavLink>
                 )}
             </header>
-            <div className={`${sideBar ? 'translate-x-0' : 'translate-x-80'} fixed w-52 h-full bg-[#D7D7D7] shadow-xl right-0 z-40 duration-300 transition-all ease-in-out flex flex-col lg:hidden gap-4 top-0 ${inHome ? 'pt-28' : 'pt-[72px]'}`}>
+            <div className={`${sideBar ? 'translate-x-0' : 'translate-x-80'} fixed w-52 h-full bg-[#D7D7D7] shadow-xl right-0 z-40 duration-300 transition-all ease-in-out flex flex-col lg:hidden gap-4 top-0 ${inHome ? 'pt-36' : 'mt-[72px]'}`}>
                 <NavLink className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} w-full h-autu flex gap-4 border-[1px] border-gray-300 py-2 px-4 font-marcellus items-center text-lg font-semibold`} to='/'>
                     <MdHome size={25} />
                     Home

@@ -8,7 +8,7 @@ import { NavLink, Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="w-full h-auto flex flex-col bg-[#1A3A37] py-10 lg:pt-20">
-      <div className="w-full h-auto flex flex-col gap-8 md:flex-row md:gap-0">
+      <div className="w-full h-auto flex flex-col  gap-8 md:flex-row md:gap-0 px-12">
         <div className="w-full h-auto font-marcellus text-white px-10 md:pt-10">
           <span>
             Crafted with passion, rooted in tradition—bringing <br /> Jaipur’s
@@ -26,7 +26,8 @@ function Footer() {
             </NavLink>
           </div>
         </div>
-        <div className="flex w-full mx-auto justify-around font-marcellus xl:w-96">
+        
+        <div className="flex w-full mx-auto justify-around font-marcellus xl:w-96 px-6">
           <div className="flex flex-col text-white">
             <span className="font-bold text-lg lg:text-lg">Pages</span>
             <NavLink
@@ -67,7 +68,7 @@ function Footer() {
                         <span className='text-sm mt-1 active:text-gray-100 md:hover:text-gray-100 cursor-pointer lg:text-base'>Brand</span>
                     </div> */}
         </div>
-        <div className="flex w-full mx-auto justify-around font-marcellus">
+        <div className="flex w-full mx-auto justify-around font-marcellus ">
           <div className="flex flex-col text-white">
             <span className="text-white font-bold lg:text-lg">Resources</span>
             <span className="text-sm mt-4 active:text-gray-100 md:hover:text-gray-100 cursor-pointer lg:text-base">

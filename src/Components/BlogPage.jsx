@@ -68,8 +68,8 @@ function BlogPage() {
                                     blog?._id === singleBlog?._id ? null : (
                                         <div onClick={() => changeBlog(blog._id)} key={index} className='min-w-60 rounded-md cursor-pointer md:min-w-72 lg:min-w-40 duration-300 transition-all ease-out bg-gray-50 shadow-md md:hover:shadow-xl h-auto flex flex-col p-2'>
                                             <img src={blog.image} alt="blog image" className='w-full rounded-lg object-cover h-40' />
-                                            <h1 className='mt-3 text-sm font-marcellus font-semibold md:mt-5 md:text-base'>{blog.title}</h1>
-                                            <p className='mt-2 text-xs font-marcellus text-gray-700 md:text-sm md:mt-3'>
+                                            <h1 className='mt-3 text-sm font-marcellus font-semibold  md:mt-5 md:text-base'>{blog.title}</h1>
+                                            <p className='mt-2 text-justify text-xs font-marcellus text-gray-700 md:text-sm md:mt-3'>
                                                 {
                                                     blog.content.length > 150 ? blog.content.substring(0, 150) + '...' : blog.content
                                                 }

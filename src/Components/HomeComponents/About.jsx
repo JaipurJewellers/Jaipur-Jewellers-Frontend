@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Info from '../Utils/Info';
 import { NavLink } from 'react-router-dom';
 import SignImg from '../../assets/sign.png';
-import Pedant from '../../assets/jj_images2/pendant.jpg';
-import Perls from '../../assets/jj_images2/earring.jpg';
-import Bracelet from "../../assets/jj_images2/bracelet.jpg";
-import Rings from "../../assets/jj_images2/ring.jpg";
+import Pedant from '../../assets/about1.png';
+import Perls from '../../assets/about2.png';
+import Bracelet from "../../assets/about3.png";
+import Rings from "../../assets/about4.png";
 import Stone from "../../assets/Images/Stone.webp";
 
 function About() {
@@ -19,7 +19,7 @@ function About() {
     ];
     
     return (
-        <div className='w-full h-auto flex flex-col py-5 bg-[#FAFAFA] pt-20'>
+        <div className='w-full h-auto flex flex-col py-5 bg-[#F4EFEF] pt-20'>
             <h1 className='font-marcellus tracking-[3px] text-center text-sm'>ABOUT OUR JAIPUR JWELLERS</h1>
             <div className='w-full h-auto flex flex-col relative'>
                 <div className='w-full h-auto flex flex-col justify-center items-center font-marcellus text-xs mt-5 mb-10 md:mt-10 md:mb-20 md:text-xl md:gap-4 xl:text-2xl xl:gap-6 2xl:text-3xl'>
@@ -46,7 +46,7 @@ function About() {
                             <img 
                                 src={product.image} 
                                 alt={product.name} 
-                                className={`w-full h-[70vh] lg:h-[90vh] object-contain rounded-xl transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-50'}`}
+                                className={`w-full h-[70vh] lg:h-[90vh] object-contain rounded-2xl transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-50'}`}
                             />
                             <div className={`absolute rounded-xl bottom-0 left-0 w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold transition-opacity duration-300 ${hoverNo === index ? 'opacity-100' : 'opacity-0'}`}> 
                                 <div className='absolute bottom-20'>

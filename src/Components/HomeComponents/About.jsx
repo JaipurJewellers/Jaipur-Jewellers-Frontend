@@ -12,10 +12,10 @@ function About() {
     const [hoverNo, setHoverNo] = useState(null);
     
     const products = [
-        { image:Pedant, name: "Necklace" ,description:"A Necklace is a piece of jewelry worn around the neck, often made from metals, beads, or gemstones. It can be simple or elaborate, adding elegance and enhancing personal style."},
-        { image: Perls, name: "EarRing" , description:"Earrings are decorative jewelry worn on the ears, often made from metals, gemstones, or beads. They come in various styles, like studs, hoops, or danglers, adding elegance and charm."},
+        { image:Pedant, name: "Earrings" ,description:"Earrings are stylish accessories worn on the earlobes, enhancing facial features and personal style.They come in various designs, from subtle studs to bold, eye-catching danglers for every occasion.They also hold cultural and personal significance, often symbolizing tradition or self-expression."},
+        { image: Perls, name: "Ring" , description:" A ring is a circular band, typically made of metal, worn on the finger as a symbol of love, commitment, status, or fashion. Rings can feature gemstones, engravings, or intricate designs, making them timeless pieces of personal expression and adornment.."},
         { image: Bracelet, name: "Bracelet", description:"A Bracelet is a decorative accessory worn around the wrist, made from materials like metal, leather, or beads. It can feature charms, gemstones, or intricate designs, adding style and elegance." },
-        { image: Rings, name: "Rings", description:"A Ring is a circular band, typically made of metal, worn on the finger as a symbol of love, commitment, status, or fashion. Rings can feature gemstones, engravings, or intricate designs, making them timeless pieces of personal expression and adornment." },
+        { image: Rings, name: "Necklace", description:"A necklace is an ornamental piece worn around the neck, often made from metals, beads, or gemstones. It enhances beauty, complements outfits, and can carry deep personal or cultural meaning. From delicate chains to bold statement pieces, necklaces suit every style and occasion." },
     ];
     
     return (

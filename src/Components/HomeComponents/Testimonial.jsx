@@ -10,7 +10,7 @@ import Person3 from '../../assets/testimonials/person3.jpg'
 import Person4 from '../../assets/testimonials/person4.jpg'
 import Person5 from '../../assets/testimonials/person5.jpg'
 import Person6 from '../../assets/testimonials/person6.jpg'
-// import Video from '../../assets/video.mov'
+ import Video from '../../assets/video.mov'
 const video = "https://res.cloudinary.com/dhby3y7z8/video/upload/f_auto:video,q_auto/srup1akds9rttiasunc3"
 function Testimonial() {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -90,7 +90,7 @@ function Testimonial() {
                      ))}
                     </div>
                 </div>
-                <div className='w-full h-[80vh] flex justify-center items-center relative md:h-[50vh] md:w-[50vw] lg:w-[45vw] xl:h-[60vh]'>
+                <div className='w-full h-[80vh] flex justify-center items-center relative md:h-[50vh] md:w-[50vw] lg:w-[45vw] xl:h-[60vh] '>
                 <video className='w-[80%] h-[80%] object-cover rounded-3xl sm:w-[50%] md:w-[80%] xl:h-full' autoPlay loop muted>
                     <source src={video} type="video/mp4" />
                 </video>

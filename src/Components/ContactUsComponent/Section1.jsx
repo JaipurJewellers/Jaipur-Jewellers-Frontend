@@ -133,7 +133,7 @@ function Section1() {
             </div>
         </motion.div>
             </div>
-            <div className='w-full h-auto flex justify-center items-center lg:w-[50vw] lg:items-end'>
+            <div className='w-full h-auto flex justify-center items-center lg:w-[60vw] lg:items-end'>
                 <div className='w-[90%] h-[60vh] rounded-3xl bg-[#1A3A37] flex flex-col p-10 font-marcellus text-white md:h-auto lg:h-[430px] xl:h-[550px] xl:py-16'>
                     <span className='text-2xl xl:text-3xl'>Contact</span>
                     <div className='w-full h-auto flex gap-4 mt-10'>

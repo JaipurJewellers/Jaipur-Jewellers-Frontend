@@ -95,11 +95,11 @@ function Header({ color }) {
 
     return (
         <>
-            <header className='w-full h-24 items-center flex justify-between p-4 relative z-50' style={{ backgroundColor: color }}>
+            <header className='w-full h-24 items-center flex justify-between  p-4 relative z-50' style={{ backgroundColor: color }}>
                 <div className='w-[100px] h-[80px] mt-6 font-marcellus cursor-pointer'>
                     <img src={logo} alt="" onClick={()=>navigate('/')} className='w-full h-full object-cover' />
                 </div>
-                <div className='hidden lg:flex lg:font-marcellus lg:gap-10 lg:ml-20 xl:60 xl:gap-16 2xl:gap-20'>
+                <div className='hidden lg:flex lg:font-marcellus lg:gap-10 lg:ml-20 xl:60 xl:gap-14   text-right text-[18px]'>
                     <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Home</NavLink>
                     <span onClick={navigateToCollections} className='cursor-pointer'>Collection</span>
                     <NavLink to='/shop' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Shop</NavLink>

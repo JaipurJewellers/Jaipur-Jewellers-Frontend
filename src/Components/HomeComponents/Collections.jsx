@@ -60,7 +60,7 @@ function Collections({ data }) {
 
     if (isLoading) {
         return (
-            <div className='bg-[#1A3A37] w-full h-auto flex flex-col justify-center items-center py-10 xl:py-20 gap-10'>
+            <div className='bg-[#F4EFEF] w-full h-auto flex flex-col justify-center items-center py-10 xl:py-20 gap-10'>
                 <div className='text-white text-xl'>Loading products...</div>
             </div>
         );

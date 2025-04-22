@@ -76,7 +76,7 @@ function Products({ data }) {
 
   return (
     <div className="w-full h-auto flex pb-5 xl:pb-20 bg-[#FAFAFA]">
-      <div className="w-full h-auto flex flex-col relative gap-5 xl:flex-row xl:gap-0 px-4 md:px-10">
+      <div className="w-full h-auto flex flex-col relative gap-5 xl:flex-row xl:gap-10 px-4 md:px-10">
         <div className="w-full h-auto flex flex-col xl:w-[60vw]">
           <div className="w-full h-auto flex flex-col font-marcellus justify-center text-2xl gap-1 px-5 sm:text-5xl sm:my-4 md:text-6xl xl:text-5xl 2xl:text-6xl xl:px-10">
             <span>Adorn Yourself in Elegance</span>

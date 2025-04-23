@@ -99,14 +99,7 @@ function Header({ color }) {
                 <div className='w-[100px] h-[80px] mt-6 font-marcellus cursor-pointer'>
                     <img src={logo} alt="" onClick={()=>navigate('/')} className='w-full h-full object-cover' />
                 </div>
-                <div className='hidden lg:flex lg:font-marcellus lg:gap-10 lg:ml-20 xl:60 xl:gap-14   text-right text-[18px]'>
-                    <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Home</NavLink>
-                    <span onClick={navigateToCollections} className='cursor-pointer'>Collection</span>
-                    <NavLink to='/shop' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Shop</NavLink>
-                    <NavLink to='/blog' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Blog</NavLink>
-                    <NavLink to='/about' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>About</NavLink>
-                    <NavLink to='/contact-us' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Contact Us</NavLink>
-                </div>
+             
 
                 {isAuthenticated && userEmail === "admin@gmail.com" && (
                     <div className='w-auto h-auto flex xl:gap-3 items-center'>
@@ -186,9 +179,21 @@ function Header({ color }) {
                         </div>
                     </>
                 ) : (
-                    isAuthenticated === false && <NavLink to='/login' className='w-auto h-auto flex px-10 py-1.5 bg-[#1A3A37] text-white font-semibold font-marcellus rounded-md cursor-pointer'>
+
+                    isAuthenticated === false &&(<>  <div className='flex gap-8 items-center'><div className='hidden lg:flex lg:font-marcellus lg:gap-10  xl:gap-14    text-[18px]'>
+                        <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Home</NavLink>
+                        <span onClick={navigateToCollections} className='cursor-pointer'>Collection</span>
+                        <NavLink to='/shop' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Shop</NavLink>
+                        <NavLink to='/blog' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Blog</NavLink>
+                        <NavLink to='/about' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>About</NavLink>
+                        <NavLink to='/contact-us' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Contact Us</NavLink>
+                    </div>
+                    <NavLink to='/login' className='w-auto h-auto flex px-10 py-1.5 bg-[#1A3A37] text-white font-semibold font-marcellus rounded-md cursor-pointer'>
                         Login
-                    </NavLink>
+                    </NavLink >
+                    </div>
+                    </> )
+
                 )}
             </header>
             <div className={`${sideBar ? 'translate-x-0' : 'translate-x-80'} fixed w-52 h-full bg-[#D7D7D7] shadow-xl right-0 z-40 duration-300 transition-all ease-in-out flex flex-col lg:hidden gap-4 top-0 ${inHome ? 'pt-36' : 'mt-[72px]'}`}>

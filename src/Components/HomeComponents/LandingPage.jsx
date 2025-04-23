@@ -103,7 +103,7 @@ function LandingPage() {
                                         </div>
                                     </div>
                                     <img src={Star1} alt="star 1" className='absolute top-10 left-16 sm:left-40 md:left-16 lg:top-7 lg:left-7 lg:w-7' />
-                                    <img src={Star2} alt="star 1" className='absolute bottom-20 left-16 sm:left-40 md:left-16 lg:top-20 lg:left-60 lg:w-3' />
+                                    {/* <img src={Star2} alt="star 1" className='absolute bottom-20 left-16 sm:left-40 md:left-16 lg:top-20 lg:left-60 lg:w-3' /> */}
                                     <img src={Star3} alt="star 1" className='absolute top-72 right-16 sm:right-32 md:right-16 lg:top-28 lg:right-52 lg:w-5 xl:right-72 2xl:top-32' />
                                     <img src={Star3} alt="star 1" className='hidden lg:absolute lg:block lg:bottom-20 lg:right-20 lg:w-5' />
                                     <img src={Star3} alt="star 1" className='hidden lg:absolute lg:block lg:bottom-40 lg:right-72 lg:w-5 xl:bottom-48 xl:right-96' />

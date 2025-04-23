@@ -80,7 +80,7 @@ function Footer() {
           </div>
           <div className="flex flex-col text-white">
             <span className="font-bold text-lg lg:text-lg">Contact</span>
-            <span className="text-xs mt-4 active:text-gray-100 flex gap-2 items-center md:hover:text-gray-100 cursor-pointer lg:text-base xl:mt-8">
+            <span className="text-xs  active:text-gray-100 flex  items-center md:hover:text-gray-100 cursor-pointer lg:text-base mt-4">
               <LuPhone size={20} /> +91 88104 51624
             </span>
             <span className="text-xs mt-1 active:text-gray-100 flex gap-2 md:hover:text-gray-100 cursor-pointer lg:text-base">

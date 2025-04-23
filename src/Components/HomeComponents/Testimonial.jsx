@@ -10,7 +10,7 @@ import Person3 from '../../assets/testimonials/person3.jpg'
 import Person4 from '../../assets/testimonials/person4.jpg'
 import Person5 from '../../assets/testimonials/person5.jpg'
 import Person6 from '../../assets/testimonials/person6.jpg'
- import Video from '../../assets/video.mov'
+import Video from '../../assets/video.mov'
 const video = "https://res.cloudinary.com/dhby3y7z8/video/upload/f_auto:video,q_auto/srup1akds9rttiasunc3"
 function Testimonial() {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -77,23 +77,26 @@ function Testimonial() {
                                 <span className="text-[#585858] font-marcellus text-xs text-center mt-5 sm:text-base sm:mt-8 md:mt-10 lg:text-lg lg:px-16">
                                     {testimonial.comment}
                                 </span>
-                                <img src={testimonial.image} alt="people logo" className="w-14 h-14 bg-[#415A77] hidden rounded-full lg:block 2xl:mt-28"/>
-                                <div className="w-full h-auto flex font-marcellus items-center gap-2 lg:px-14 mt-10 sm:mt-16 md:mt-32 lg:mt-0">
+                                <div className="w-full h-auto flex flex-col items-start  font-marcellus  gap-2 lg:px-10 mt-10 sm:mt-16 md:mt-32 lg:mt-0">
+                                    
+                                    <img src={testimonial.image} alt="people logo" className="w-14 h-14 bg-[#415A77] hidden rounded-full lg:block 2xl:mt-28" />
+                                   <div className='flex  items-center gap-4'>
                                     <span className="text-[#1A3A37] text-lg">- {testimonial.name} </span>
-                                    <span className="text-[#00000099] text-xs mt-1.5">{testimonial.address}</span>
+                                    <span className="text-[#00000099] text-lg  ">{testimonial.address}</span>
+                                    </div>
                                 </div>
                                 <img src={LeftQuote} alt="quote logo" className="w-5 absolute top-0 sm:w-7" />
                                 <img src={RightQuote} alt="quote logo" className="w-5 absolute bottom-16 right-10 lg:top-36   sm:w-7 sm:bottom-20 md:bottom-24 lg:bottom-16 xl:bottom-10" />
-                                
-                                
-        </div>
-                     ))}
+
+
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className='w-full h-[80vh] flex justify-center items-center relative md:h-[50vh] md:w-[50vw] lg:w-[45vw] xl:h-[60vh] '>
-                <video className='w-[80%] h-[80%] object-cover rounded-3xl sm:w-[50%] md:w-[80%] xl:h-full' autoPlay loop muted>
-                    <source src={video} type="video/mp4" />
-                </video>
+                    <video className='w-[80%] h-[80%] object-cover rounded-3xl sm:w-[50%] md:w-[80%] xl:h-full' autoPlay loop muted>
+                        <source src={video} type="video/mp4" />
+                    </video>
 
 
                     {/* <img src={Star1} alt="star" className='w-10 h-10 absolute bottom-20 left-12 sm:left-44 md:left-10 md:bottom-12 lg:left-32 xl:left-40 2xl:bottom-10' />

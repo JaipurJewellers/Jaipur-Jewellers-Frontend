@@ -4,10 +4,10 @@ import RightQuote from '../../assets/Images/rightQuote.png'
 import Star1 from '../../assets/Images/newStar.png'
 import BigStar from '../../assets/Images/bigStar.png'
 import Necklace from '../../assets/Neclace2.png'
-import Person from '../../assets/testimonials/person.jpg'
-import Person2 from '../../assets/testimonials/person2.jpg'
-import Person3 from '../../assets/testimonials/person3.jpg'
-import Person4 from '../../assets/testimonials/person4.jpg'
+import Person from '../../assets/person.png'
+import Person2 from '../../assets/person1.svg'
+import Person3 from '../../assets/person2.svg'
+import Person4 from '../../assets/person3.svg'
 import Person5 from '../../assets/testimonials/person5.jpg'
 import Person6 from '../../assets/testimonials/person6.jpg'
 import Video from '../../assets/video.mov'
@@ -18,25 +18,25 @@ function Testimonial() {
     const testimonials = [
         {
             comment: `"I’ve always admired Jaipur’s craftsmanship, and this brand truly brings its heritage to life! The ring I purchased is not just a piece of jewellery but a work of art. The attention to detail is beyond stunning!"`,
-            name: 'Meera Sharma',
+            name: 'Priya ',
             address: 'Mumbai',
             image: Person
         },
         {
             comment: `"The bracelet I ordered exceeded all my expectations! The stones are vibrant, and the finish is flawless. You can tell it’s handcrafted with love and precision. I’ll definitely be shopping again!"`,
-            name: 'Skyler',
-            address: 'New York',
+            name: 'Shalu Sharma ',
+            address: 'Pune',
             image: Person2
         },
         {
             comment: `"Wearing their jewellery makes me feel like royalty! The pendant I received is elegant, lightweight, and absolutely gorgeous. The packaging was luxurious too—such a premium experience!"`,
-            name: 'Kristina Williams',
-            address: 'Canada',
+            name: 'Meera Kumari',
+            address: 'Kolkata',
             image: Person3
         },
         {
             comment: `"I was unsure about my ring size, but their team was super helpful and guided me through the process. The delivery was on time, and the piece was even more stunning in person. Amazing service!"`,
-            name: 'Shreya',
+            name: 'Prashant Singh',
             address: 'Jaipur',
             image: Person4
         },
@@ -48,7 +48,7 @@ function Testimonial() {
         },
         {
             comment: `"I was hesitant to buy fine jewellery online, but this brand proved me wrong. The craftsmanship, authenticity, and overall experience were fantastic. My bracelet is simply breathtaking!"`,
-            name: 'Nikhil',
+            name: 'Deepak Kumar',
             address: 'Hyderabad',
             image: Person6
         }

@@ -5,7 +5,7 @@ import SignImg from '../../assets/sign.png';
 import Pedant from '../../assets/about5.jpg';
 import Perls from '../../assets/about6.jpg';
 import Bracelet from "../../assets/about7.jpg";
-import Rings from "../../assets/about8.jpg";
+import Rings from "../../assets/about8.jpeg";
 
 function About() {
     const [hoverNo, setHoverNo] = useState(null);

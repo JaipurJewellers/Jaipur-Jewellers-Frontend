@@ -567,8 +567,7 @@ const Terms = () => {
             <p>
               These Terms of Service and any separate agreements whereby we
               provide you Services shall be governed by and construed in
-              accordance with the laws of India and jurisdiction of Jaipur,
-              Rajasthan
+              accordance with the laws of India and jurisdiction of Delhi, India.
             </p>
           </div>
         </div>

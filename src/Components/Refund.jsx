@@ -15,7 +15,8 @@ const Refund = () => {
 
         <div className="text-center space-y-4 md:space-y-6 text-gray-700 text-sm md:text-base">
           <p>
-           Return policy: as we have jewelleries we are not offering any return policy and also exchanging policy.
+           Return Policy: As we have jewelleries we are not offering any return policy and also exchanging policy. <br></br>
+           Refund Policy: Once the refund is approved it will take 5-7 working days to credit to the original payment method.
           </p>
         </div>
       </div>

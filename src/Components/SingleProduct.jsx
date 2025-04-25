@@ -39,9 +39,9 @@ function SingleProduct() {
     ];
 
     const reviews = [
-        { user: 'John D.', rating: 5, comment: 'Excellent product, highly recommend!' },
-        { user: 'Sarah M.', rating: 4, comment: 'Good quality, fast delivery' },
-        { user: 'Mike R.', rating: 5, comment: 'Exceeded my expectations' },
+        // { user: 'John D.', rating: 5, comment: 'Excellent product, highly recommend!' },
+        // { user: 'Sarah M.', rating: 4, comment: 'Good quality, fast delivery' },
+        // { user: 'Mike R.', rating: 5, comment: 'Exceeded my expectations' },
     ];
 
     // Calculate translate value for the active tab indicator
@@ -397,19 +397,28 @@ function SingleProduct() {
                                     <div className='w-full h-auto flex flex-col font-marcellus gap-3 md:gap-6'>
                                         <span className='text-[#111111] text-xl sm:text-2xl md:text-3xl lg:text-2xl'>Customer Reviews</span>
                                         <div className='space-y-6'>
-                                            {reviews.map((review, index) => (
-                                                <div key={index} className='border-b border-[#1111111A] pb-6'>
-                                                    <div className='flex items-center gap-3 mb-2'>
-                                                        <span className='font-semibold text-[#111111E5]'>{review.user}</span>
-                                                        <div className='flex gap-1'>
-                                                            {[...Array(review.rating)].map((_, i) => (
-                                                                <span key={i} className='text-yellow-500 text-lg'>★</span>
-                                                            ))}
+                                            {
+                                                reviews.length !== 0
+                                                    ? reviews.map((review, index) => (
+                                                        <div key={index} className='border-b border-[#1111111A] pb-6'>
+                                                            <div className='flex items-center gap-3 mb-2'>
+                                                                <span className='font-semibold text-[#111111E5]'>{review.user}</span>
+                                                                <div className='flex gap-1'>
+                                                                    {[...Array(review.rating)].map((_, i) => (
+                                                                        <span key={i} className='text-yellow-500 text-lg'>★</span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                            <p className='text-[#111111B2] text-sm sm:text-base'>{review.comment}</p>
                                                         </div>
-                                                    </div>
-                                                    <p className='text-[#111111B2] text-sm sm:text-base'>{review.comment}</p>
-                                                </div>
-                                            ))}
+                                                    ))
+                                                    : (
+                                                        <div className='w-full h-auto flex flex-col gap-3'>
+                                                            <span className='text-[#111111] text-lg sm:text-2xl md:text-3xl lg:text-2xl'>No reviews yet</span>
+                                                        </div>
+                                                    )
+
+                                            }
                                         </div>
                                     </div>
                                 </div>

@@ -31,6 +31,7 @@ import Shipping from './Components/Shipping.jsx'
 import { FavoritesProvider } from './Components/FavoritesContext.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import OrderConfirmation from './Components/OrderConfirm.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/my-cart' element={<MyCart />} />
         <Route path='/my-cart/checkout' element={<Checkout />} />
+        <Route path='/order-confirm/:id?' element={<OrderConfirmation />} />
         <Route path='/single-product/:id' element={<SingleProduct />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/termsandconditions' element={<Terms />} />

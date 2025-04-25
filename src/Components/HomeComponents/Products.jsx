@@ -189,7 +189,7 @@ function Products({ data }) {
             <NavLink
               state={{ product: floatingProducts[0] }}
               to={`/single-product/${floatingProducts[0]?._id || 'temp'}`}
-              className="absolute flex p-1 bg-white rounded-lg bottom-28 right-5 shadow-md sm:right-36 md:right-48 lg:right-60 xl:-right-24 hover:scale-105 transition-transform duration-200"
+              className="absolute flex p-1 bg-white rounded-lg bottom-28 right-5 shadow-md sm:right-36 md:right-48 lg:right-60 xl:-right-20 hover:scale-105 transition-transform duration-200"
             >
               <img
                 src={floatingProducts[0]?.Image}

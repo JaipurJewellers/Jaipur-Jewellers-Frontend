@@ -97,9 +97,9 @@ function Header({ color }) {
         <>
             <header className='w-full h-24 items-center flex justify-between  p-4 relative z-50' style={{ backgroundColor: color }}>
                 <div className='w-[100px] h-[80px] mt-6 font-marcellus cursor-pointer'>
-                    <img src={logo} alt="" onClick={()=>navigate('/')} className='w-full h-full object-cover' />
+                    <img src={logo} alt="" onClick={() => navigate('/')} className='w-full h-full object-cover' />
                 </div>
-             
+
 
                 {isAuthenticated && userEmail === "admin@gmail.com" && (
                     <div className='w-auto h-auto flex xl:gap-3 items-center'>
@@ -136,8 +136,8 @@ function Header({ color }) {
                                 </div>
                             )}
                         </div>
-                        <div className='lg:hidden mx-4'> 
-                            {sideBar ? <IoClose size={25} onClick={() => setSideBar(false)} className='cursor-pointer' /> : <FaBarsStaggered size={25} onClick={() => setSideBar(true)} className='cursor-pointer' />} 
+                        <div className='lg:hidden mx-4'>
+                            {sideBar ? <IoClose size={25} onClick={() => setSideBar(false)} className='cursor-pointer' /> : <FaBarsStaggered size={25} onClick={() => setSideBar(true)} className='cursor-pointer' />}
                         </div>
                     </div>
                 )}
@@ -145,6 +145,14 @@ function Header({ color }) {
                     <>
                         <div className='flex gap-7'>
                             <div className='flex gap-5 items-center'>
+                                <div className='hidden lg:flex lg:font-marcellus lg:gap-10  xl:gap-14    text-[18px]'>
+                                    <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Home</NavLink>
+                                    <span onClick={navigateToCollections} className='cursor-pointer'>Collection</span>
+                                    <NavLink to='/shop' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Shop</NavLink>
+                                    <NavLink to='/blog' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Blog</NavLink>
+                                    <NavLink to='/about' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>About</NavLink>
+                                    <NavLink to='/contact-us' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Contact Us</NavLink>
+                                </div>
                                 <div ref={dropdownRef2} className='w-auto h-auto flex items-center justify-center'>
                                     <span onClick={handleDropDown2} className='p-1.5 bg-gray-200 rounded-full active:bg-gray-100 md:hover:bg-gray-100 cursor-pointer'>
                                         <CiUser size={20} />
@@ -172,15 +180,15 @@ function Header({ color }) {
                                     <PiStorefrontLight size={20} />
                                 </NavLink>
                             </div>
-                            <div className='lg:hidden'> 
-                                {sideBar ? <IoClose size={25} onClick={() => setSideBar(false)} className='cursor-pointer' /> : <FaBarsStaggered size={25} onClick={() => setSideBar(true)} className='cursor-pointer' />} 
+                            <div className='lg:hidden'>
+                                {sideBar ? <IoClose size={25} onClick={() => setSideBar(false)} className='cursor-pointer' /> : <FaBarsStaggered size={25} onClick={() => setSideBar(true)} className='cursor-pointer' />}
                             </div>
                             {/* <span className='hidden lg:block lg:px-4 lg:py-2 lg:rounded-xl lg:font-marcellus lg:bg-[#1A3A37] lg:text-white 2xl:px-5 lg:cursor-pointer'>Get Special Offers</span> */}
                         </div>
                     </>
                 ) : (
 
-                    isAuthenticated === false &&(<>  <div className='flex gap-8 items-center'><div className='hidden lg:flex lg:font-marcellus lg:gap-10  xl:gap-14    text-[18px]'>
+                    isAuthenticated === false && (<>  <div className='flex gap-8 items-center'><div className='hidden lg:flex lg:font-marcellus lg:gap-10  xl:gap-14    text-[18px]'>
                         <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Home</NavLink>
                         <span onClick={navigateToCollections} className='cursor-pointer'>Collection</span>
                         <NavLink to='/shop' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Shop</NavLink>
@@ -188,11 +196,11 @@ function Header({ color }) {
                         <NavLink to='/about' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>About</NavLink>
                         <NavLink to='/contact-us' className={({ isActive }) => `${isActive ? 'text-[#1A3A37]' : 'text-black'} cursor-pointer`}>Contact Us</NavLink>
                     </div>
-                    <NavLink to='/login' className='w-auto h-auto flex px-10 py-1.5 bg-[#1A3A37] text-white font-semibold font-marcellus rounded-md cursor-pointer'>
-                        Login
-                    </NavLink >
+                        <NavLink to='/login' className='w-auto h-auto flex px-10 py-1.5 bg-[#1A3A37] text-white font-semibold font-marcellus rounded-md cursor-pointer'>
+                            Login
+                        </NavLink >
                     </div>
-                    </> )
+                    </>)
 
                 )}
             </header>

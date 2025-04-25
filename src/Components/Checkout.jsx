@@ -5,12 +5,13 @@ import { useContext } from 'react';
 import { CartContext } from './CartContext';
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
 
 const backend = import.meta.env.VITE_BACKEND_URL
 
 function Checkout() {
-    const { cartItems, getCartTotal, clearCart } = useContext(CartContext)
+    const { cartItems, getCartTotal } = useContext(CartContext)
     const [userData, setUserData] = useState(null);
     const mainPrice = getCartTotal()
     const [buyerInfo, setBuyerInfo] = useState({
@@ -38,16 +39,22 @@ function Checkout() {
 
     async function handleCheckout() {
         try {
+            const totalPrice = mainPrice + (mainPrice * 0.03)
             const data = {
                 userId: userData.id,
                 cartItems,
                 shippingInfo: buyerInfo,
-                totalPrice: mainPrice + 115 + 110 //115 is shipping price and 110 is tax change this later
+                transactionId: "T" + Date.now(),
+                totalPrice
             }
             const response = await axios.post(`${backend}/api/v1/orders/create-order`, data)
-            alert("Checkout successful")
-            clearCart()
-            navigate('/view-profile')
+            if (response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
+            } else {
+                console.log("Invalid response structure from payment gateway");
+            }
+            toast.success("Checkout successful")
+            // clearCart()
             setBuyerInfo({
                 firstName: '',
                 lastName: '',
@@ -189,27 +196,19 @@ function Checkout() {
                                 </div>
                                 <div className='w-full h-auto flex justify-between items-center'>
                                     <span>Shipping</span>
-                                    <span>₹115.00</span>
+                                    <span>₹00.00</span>
                                 </div>
                                 <div className='w-full h-auto flex justify-between items-center'>
                                     <span>Tax</span>
-                                    <span>₹110.00</span>
+                                    <span>₹{mainPrice ? (mainPrice * 0.03).toFixed(2) : '0.00'}</span>
                                 </div>
                             </div>
                             <div className='w-[95%] mx-auto h-[1px] bg-[#383838] my-5'></div>
                             <div className='w-full h-auto flex items-center justify-between text-[#383838] px-3 xl:text-lg'>
                                 <span>Total</span>
-                                <span>₹{mainPrice + 115 + 110}.00</span>
+                                <span>₹{mainPrice + (mainPrice * 0.03)  }.00</span>
                             </div>
                             <div className='w-[95%] mx-auto h-[1px] bg-[#383838] my-5'></div>
-                            <div className='w-full h-auto flex flex-col px-3 text-[#383838] gap-5 '>
-                                <span className='xl:text-lg'>Payment</span>
-                                <div className='w-full h-auto flex justify-between text-sm lg:text-base xl:text-sm 2xl:text-base'>
-                                    <span className='px-3 py-1 border-[1px] border-[#383838] rounded-md cursor-pointer '>Credit Card</span>
-                                    <span className='px-3 py-1 border-[1px] border-[#383838] bg-[#383838] text-[#FAFAFA] rounded-md cursor-pointer'>Bank Transfer</span>
-                                    <span className='px-3 py-1 border-[1px] border-[#383838] rounded-md cursor-pointer'>Paypal</span>
-                                </div>
-                            </div>
                             <div className='w-full h-auto flex flex-col mt-8 px-6 gap-3'>
                                 <span onClick={handleCheckout} className='w-full h-auto flex items-center justify-center bg-[#1A3A37] text-[#FAFAFA] py-2 rounded-md cursor-pointer'>Checkout</span>
                                 <NavLink to='/my-cart' className='w-full h-auto flex items-center justify-center text-[#383838] py-2 cursor-pointer'>Back to cart</NavLink>

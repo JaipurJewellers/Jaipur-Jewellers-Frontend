@@ -251,7 +251,7 @@ function SingleProduct() {
                     </div>
                 </div>
                 <div className='w-full h-auto flex flex-col px-5'>
-                    <div className='w-full h-auto font-marcellus md:text-lg lg:text-base xl:text-lg'>{product.product_id}</div>
+                    <div className='w-full h-auto font-marcellus md:text-lg lg:text-base xl:text-lg'>Jaipur Jewellers</div>
                     <div className='w-full h-auto flex flex-col font-marcellus gap-3 my-5 sm:gap-5 xl:py-7 xl:pt-2'>
                         <span className='text-3xl text-[#111111] sm:text-4xl md:text-5xl lg:text-4xl xl:text-7xl'>{product.name}</span>
                         <div className='text-[#111111CC] text-sm flex gap-2 items-center sm:text-base md:text-lg lg:text-base xl:text-lg'>

@@ -15,8 +15,7 @@ const Refund = () => {
 
         <div className="text-center space-y-4 md:space-y-6 text-gray-700 text-sm md:text-base">
           <p>
-            We are not offering any refunds.
-For exception case, once the refund is approved, it will take 7 business days to credit the amount to the customer's bank account.
+           Return policy: as we have jewelleries we are not offering any return policy and also exchanging policy.
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import LandingPage from './HomeComponents/LandingPage'
 import About from './HomeComponents/About'
 import Products from './HomeComponents/Products'
-// import Collections from './HomeComponents/Collections'
+import Collections from './HomeComponents/Collections'
 import Testimonial from './HomeComponents/Testimonial'
 import axios from 'axios'
 
@@ -56,9 +56,9 @@ function Home({ scrollTo }) {
             <LandingPage />
             <About data={products} />
             <Products data={products} />
-{/*             <div id="collections">
+            <div id="collections">
                 <Collections data={products} />
-            </div> */}
+            </div>
             <Testimonial />
         </>
     )

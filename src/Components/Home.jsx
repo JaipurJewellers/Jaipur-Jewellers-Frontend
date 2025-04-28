@@ -56,9 +56,9 @@ function Home({ scrollTo }) {
             <LandingPage />
             <About data={products} />
             <Products data={products} />
-            {/* <div id="collections">
+            <div id="collections">
                 <Collections data={products} />
-            </div> */}
+            </div>
             <Testimonial />
         </>
     )

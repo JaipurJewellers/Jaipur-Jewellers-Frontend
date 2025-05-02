@@ -163,7 +163,7 @@ function Shop() {
                             />
                         </div>
                         <div className='product-slider w-full h-auto flex overflow-scroll font-marcellus gap-3 md:w-auto'>
-                            {["Pendant", "Earring", "Ring", "Bracelet"].map((item, index) => (
+                            {["Necklace", "Pendant", "Earring", "Ring", "Bracelet"].map((item, index) => (
                                 <div
                                     key={index}
                                     onClick={() => setSelectedCategory(item)}

@@ -19,8 +19,9 @@ function AdminLogin() {
         try {
             const response = await axios.post(`${backend}/api/v1/admin/admin-login`, adminDetails)
             if (response.status === 200) {
-                const { token } = response.data;
+                const { token, role } = response.data;
                 localStorage.setItem("authToken", token);
+                localStorage.setItem("role", role);
                 login(token);
                 navigate("/")
             }

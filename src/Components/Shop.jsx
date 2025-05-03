@@ -13,7 +13,7 @@ function Shop() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchProduct, setSearchProduct] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState("Necklace");
+    const [selectedCategory, setSelectedCategory] = useState("Pendant");
     const [allProducts, setAllProducts] = useState([]);
     const [selectedImages, setSelectedImages] = useState({});
     const [categoryImage, setCategoryImage] = useState("");
@@ -163,7 +163,7 @@ function Shop() {
                             />
                         </div>
                         <div className='product-slider w-full h-auto flex overflow-scroll font-marcellus gap-3 md:w-auto'>
-                            {["Necklace", "Pendant", "Earring", "Ring", "Bracelet"].map((item, index) => (
+                            {["Pendant", "Earring", "Ring", "Bracelet"].map((item, index) => (
                                 <div
                                     key={index}
                                     onClick={() => setSelectedCategory(item)}

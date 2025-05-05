@@ -6,6 +6,7 @@ import ProductForm from '../ProductForm'
 import axios from 'axios';
 import { Loader2 } from "lucide-react";
 import Header from '../Header';
+import { useNavigate } from 'react-router-dom';
 
 const backend = import.meta.env.VITE_BACKEND_URL
 
@@ -16,11 +17,19 @@ function Dashboard() {
   const [loading, setLoading] = useState(false)
   const [productVisible, setProductVisible] = useState(false)
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   const openPopup = (product = null) => {
     setCurrentProduct(product);
     setIsPopupOpen(true);
   }
+
+  useEffect(()=> {
+    const role = localStorage.getItem('role')
+    if(role !== 'Admin') {
+      navigate("/")
+    }
+  }, [])
 
   const closePopup = () => {
     setIsPopupOpen(false);

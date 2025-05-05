@@ -9,6 +9,13 @@ const Blogs = () => {
     const backend = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate();
 
+    useEffect(()=> {
+        const role = localStorage.getItem('role')
+        if(role !== 'Admin') {
+          navigate("/")
+        }
+      }, [])
+
     const handleCreateBlog = () => {
         navigate('/admin/create-blog');
     };

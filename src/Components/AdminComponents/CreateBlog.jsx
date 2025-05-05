@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "../Header";
+import { useNavigate } from "react-router-dom";
 
 const backend = import.meta.env.VITE_BACKEND_URL;
 
@@ -11,6 +12,14 @@ function CreateBlog() {
     });
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState("");
+    const navigate = useNavigate()
+
+    useEffect(()=> {
+        const role = localStorage.getItem('role')
+        if(role !== 'Admin') {
+          navigate("/")
+        }
+      }, [])
 
     // Handle form field changes
     const handleInputChange = (e) => {

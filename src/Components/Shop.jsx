@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import { IoIosSearch, IoIosHeart } from "react-icons/io";
 import { GoHeart, GoHeartFill } from "react-icons/go";
@@ -18,6 +18,10 @@ function Shop() {
     const [selectedImages, setSelectedImages] = useState({});
     const [categoryImage, setCategoryImage] = useState("");
     const [showFavoritesTooltip, setShowFavoritesTooltip] = useState(false);
+    
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(12);
 
     const { favorites, addFavorite, removeFavorite } = useFavorites();
     const location = useLocation();
@@ -35,6 +39,7 @@ function Shop() {
             if (response.status === 200) {
                 setProducts(specificProducts);
                 setLoading(false);
+                setCurrentPage(1);
 
                 if (specificProducts.length > 0) {
                     setCategoryImage(specificProducts[0]?.Image);
@@ -54,15 +59,28 @@ function Shop() {
                 product.name.toLowerCase().includes(searchProduct.toLowerCase())
             );
             setProducts(filteredProducts);
+            setCurrentPage(1);
         } else {
             fetchProducts();
         }
     }
 
+    // Get current products for pagination
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(products.length / productsPerPage);
+
+    // Change page
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const handleFavoriteClick = async (productId, e) => {
         e.preventDefault();
         e.stopPropagation();
-        toast.dismiss()
+        toast.dismiss();
         try {
             const isFavorite = favorites.some(fav => fav.product_id === productId);
             if (isFavorite) {
@@ -73,7 +91,6 @@ function Shop() {
                 toast.success("Added to favorites");
             }
 
-            // Update the local state to reflect the change immediately
             setProducts(prevProducts =>
                 prevProducts.map(product =>
                     product._id === productId
@@ -102,6 +119,59 @@ function Shop() {
     useEffect(() => {
         handleSearchProduct();
     }, [searchProduct]);
+
+    // Smart pagination display logic
+    const getPaginationButtons = () => {
+        const buttons = [];
+        const maxVisibleButtons = 5;
+    
+        const createPageButton = (page) => (
+            <button
+                key={page}
+                onClick={() => paginate(page)}
+                className={`px-2 sm:px-3 py-1 rounded-md text-sm sm:text-base ${currentPage === page ? 'bg-[#1A3A37] text-white' : 'border border-[#1A3A37] text-[#1A3A37]'}`}
+            >
+                {page}
+            </button>
+        );
+    
+        if (totalPages <= maxVisibleButtons + 2) {
+            // Show all pages
+            for (let i = 1; i <= totalPages; i++) {
+                buttons.push(createPageButton(i));
+            }
+        } else {
+            buttons.push(createPageButton(1));
+    
+            let startPage = Math.max(2, currentPage - 1);
+            let endPage = Math.min(totalPages - 1, currentPage + 1);
+    
+            if (currentPage <= 3) {
+                startPage = 2;
+                endPage = 4;
+            } else if (currentPage >= totalPages - 2) {
+                startPage = totalPages - 3;
+                endPage = totalPages - 1;
+            }
+    
+            if (startPage > 2) {
+                buttons.push(<span key="start-ellipsis" className="px-1 sm:px-2 text-[#1A3A37]">...</span>);
+            }
+    
+            for (let i = startPage; i <= endPage; i++) {
+                buttons.push(createPageButton(i));
+            }
+    
+            if (endPage < totalPages - 1) {
+                buttons.push(<span key="end-ellipsis" className="px-1 sm:px-2 text-[#1A3A37]">...</span>);
+            }
+    
+            buttons.push(createPageButton(totalPages));
+        }
+    
+        return buttons;
+    };
+    
 
     return (
         <>
@@ -180,85 +250,112 @@ function Shop() {
                             <div className='w-full h-80 flex justify-center items-center'>
                                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1A3A37]"></div>
                             </div>
-                        ) : products.length > 0 ? (
-                            <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6'>
-                                {products.map((product) => {
-                                    const isFavorite = favorites.some(fav => fav._id === product._id);
+                        ) : currentProducts.length > 0 ? (
+                            <>
+                                <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-6'>
+                                    {currentProducts.map((product) => {
+                                        const isFavorite = favorites.some(fav => fav._id === product._id);
 
-                                    return (
-                                        <div key={product._id} className='group w-[300px] h-auto flex flex-col mx-auto'>
-                                            <NavLink
-                                                state={{ product }}
-                                                to={`/single-product/${product._id}`}
-                                                className='w-full h-full flex flex-col bg-[#FEFDFD] p-1 rounded-[29px] gap-2 lg:p-1.5 cursor-pointer md:hover:bg-[#1A3A37] md:hover:text-white duration-500 ease-in-out transition-all'
-                                            >
-                                                <div className="relative">
-                                                    <img
-                                                        src={selectedImages[product._id] || product?.Image}
-                                                        alt={product.name}
-                                                        className='w-full h-[200px] mx-auto bg-gray-200 object-cover rounded-[30px] lg:h-[250px]'
-                                                        onError={(e) => {
-                                                            e.target.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-                                                            e.target.alt = 'Image not available';
-                                                        }}
-                                                    />
-                                                    <button
-                                                        onClick={(e) => handleFavoriteClick(product.product_id, e)}
-                                                        className="absolute top-3 right-3 p-2 bg-white bg-opacity-80 rounded-full hover:bg-opacity-100 transition-all"
-                                                        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-                                                    >
-                                                        {isFavorite ? (
-                                                            <GoHeartFill size={20} className="text-red-500" />
-                                                        ) : (
-                                                            <GoHeart size={20} className="text-gray-600" />
-                                                        )}
-                                                    </button>
-                                                </div>
-                                                <div className='w-full h-auto flex flex-col mt-2 items-center px-3 lg:mt-3'>
-                                                    <div className='w-full h-auto flex justify-between items-center'>
-                                                        <span className='font-marcellus text-2xl truncate w-[80%]'>
-                                                            {product.name}
-                                                        </span>
-                                                        {isFavorite && (
-                                                            <span className="text-xs text-[#1A3A37] bg-[#e8f0ef] px-2 py-1 rounded">
-                                                                In favorites
+                                        return (
+                                            <div key={product._id} className='group w-[300px] h-auto flex flex-col mx-auto'>
+                                                <NavLink
+                                                    state={{ product }}
+                                                    to={`/single-product/${product._id}`}
+                                                    className='w-full h-full flex flex-col bg-[#FEFDFD] p-1 rounded-[29px] gap-2 lg:p-1.5 cursor-pointer md:hover:bg-[#1A3A37] md:hover:text-white duration-500 ease-in-out transition-all'
+                                                >
+                                                    <div className="relative">
+                                                        <img
+                                                            src={selectedImages[product._id] || product?.Image}
+                                                            alt={product.name}
+                                                            className='w-full h-[200px] mx-auto bg-gray-200 object-cover rounded-[30px] lg:h-[250px]'
+                                                            onError={(e) => {
+                                                                e.target.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+                                                                e.target.alt = 'Image not available';
+                                                            }}
+                                                        />
+                                                        <button
+                                                            onClick={(e) => handleFavoriteClick(product.product_id, e)}
+                                                            className="absolute top-3 right-3 p-2 bg-white bg-opacity-80 rounded-full hover:bg-opacity-100 transition-all"
+                                                            aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                                                        >
+                                                            {isFavorite ? (
+                                                                <GoHeartFill size={20} className="text-red-500" />
+                                                            ) : (
+                                                                <GoHeart size={20} className="text-gray-600" />
+                                                            )}
+                                                        </button>
+                                                    </div>
+                                                    <div className='w-full h-auto flex flex-col mt-2 items-center px-3 lg:mt-3'>
+                                                        <div className='w-full h-auto flex justify-between items-center'>
+                                                            <span className='font-marcellus text-2xl truncate w-[80%]'>
+                                                                {product.name}
                                                             </span>
-                                                        )}
-                                                    </div>
-                                                    <span className='w-full h-auto text-[#5A5A5A] text-sm lg:text-base group-hover:text-white duration-500 ease-in-out transition-all'>
-                                                        {product.category}
-                                                    </span>
-                                                    <div className='w-full h-auto flex justify-between my-2 items-center lg:mt-4'>
-                                                        <span className='flex gap-2'>
-                                                            {[product?.Image1, product?.Image2, product?.Image3].map((img, idx) => (
-                                                                img?.image && (
-                                                                    <button
-                                                                        key={idx}
-                                                                        onClick={(e) => {
-                                                                            e.preventDefault();
-                                                                            e.stopPropagation();
-                                                                            setSelectedImages((prevState) => ({
-                                                                                ...prevState,
-                                                                                [product._id]: img.image,
-                                                                            }));
-                                                                        }}
-                                                                        className="h-4 w-4 border-[1px] lg:border-2 rounded-full lg:w-6 lg:h-6 cursor-pointer"
-                                                                        style={{ backgroundColor: `#${img.color || 'ccc'}` }}
-                                                                        aria-label={`Select color variant`}
-                                                                    />
-                                                                )
-                                                            ))}
+                                                            {isFavorite && (
+                                                                <span className="text-xs text-[#1A3A37] bg-[#e8f0ef] px-2 py-1 rounded">
+                                                                    In favorites
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <span className='w-full h-auto text-[#5A5A5A] text-sm lg:text-base group-hover:text-white duration-500 ease-in-out transition-all'>
+                                                            {product.category}
                                                         </span>
-                                                        <span className='font-marcellus text-lg lg:text-xl'>
-                                                            ₹{product.quantityPrices[0]?.price?.toLocaleString() || 'N/A'}
-                                                        </span>
+                                                        <div className='w-full h-auto flex justify-between my-2 items-center lg:mt-4'>
+                                                            <span className='flex gap-2'>
+                                                                {[product?.Image1, product?.Image2, product?.Image3].map((img, idx) => (
+                                                                    img?.image && (
+                                                                        <button
+                                                                            key={idx}
+                                                                            onClick={(e) => {
+                                                                                e.preventDefault();
+                                                                                e.stopPropagation();
+                                                                                setSelectedImages((prevState) => ({
+                                                                                    ...prevState,
+                                                                                    [product._id]: img.image,
+                                                                                }));
+                                                                            }}
+                                                                            className="h-4 w-4 border-[1px] lg:border-2 rounded-full lg:w-6 lg:h-6 cursor-pointer"
+                                                                            style={{ backgroundColor: `#${img.color || 'ccc'}` }}
+                                                                            aria-label={`Select color variant`}
+                                                                        />
+                                                                    )
+                                                                ))}
+                                                            </span>
+                                                            <span className='font-marcellus text-lg lg:text-xl'>
+                                                                ₹{product.quantityPrices[0]?.price?.toLocaleString() || 'N/A'}
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </NavLink>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                                                </NavLink>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                
+                                {/* Improved Pagination Controls */}
+                                {totalPages > 1 && (
+                                    <div className="w-full flex justify-center mt-8">
+                                        <nav className="flex items-center gap-1 sm:gap-2">
+                                            <button
+                                                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                                                disabled={currentPage === 1}
+                                                className="px-2 sm:px-3 py-1 rounded-md border border-[#1A3A37] text-[#1A3A37] disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                                            >
+                                                Prev
+                                            </button>
+                                            
+                                            {getPaginationButtons()}
+                                            
+                                            <button
+                                                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                                                disabled={currentPage === totalPages}
+                                                className="px-2 sm:px-3 py-1 rounded-md border border-[#1A3A37] text-[#1A3A37] disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                                            >
+                                                Next
+                                            </button>
+                                        </nav>
+                                    </div>
+                                )}
+                            </>
                         ) : (
                             <div className='w-full h-80 flex justify-center items-center font-marcellus text-xl text-gray-500'>
                                 No products found
